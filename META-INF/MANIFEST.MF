@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-ClassPath: .,
+ lib/guava-23.0.jar,
+ lib/StandAlone.jar,
+ lib/hamcrest-core-1.3.jar
+Bundle-ManifestVersion: 2
+Bundle-Name: northq.test Binding
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-SymbolicName: org.openhab.binding.northq.test;singleton:=true
+Bundle-Vendor: openHAB
+Bundle-Version: 2.2.0.qualifier
+Fragment-Host: org.openhab.binding.northq
+Import-Package: 
+ org.eclipse.jdt.annotation;resolution:=optional,
+ org.eclipse.smarthome.config.core,
+ org.eclipse.smarthome.config.discovery,
+ org.eclipse.smarthome.core.library.types,
+ org.eclipse.smarthome.core.thing,
+ org.eclipse.smarthome.core.thing.binding,
+ org.eclipse.smarthome.core.thing.binding.builder,
+ org.eclipse.smarthome.core.thing.type,
+ org.eclipse.smarthome.core.types,
+ org.openhab.binding.northq,
+ org.openhab.binding.northq.handler,
+ org.junit;version="4.11.0",
+ org.hamcrest;core=split,
+ org.osgi.framework,
+ org.osgi.service.device,
+ org.slf4j
+Require-Bundle: 
+ org.hamcrest,
+ org.junit
