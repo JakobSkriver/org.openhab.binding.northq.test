@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.openhab.binding.northq.handler.NorthQPhoneHandler;
 import org.openhab.binding.northq.internal.model.NGateway;
 import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.model.Qmotion;
@@ -24,7 +25,13 @@ public class ServicesTest {
     CredentialsService credentialsServices;
     ArrayList<String> user;
     NorthNetwork network;
+    NorthQPhoneHandler phoneHandler;
 
+    // Use Cases we cant test
+    // 4, 5, 6, 7, 13
+
+    // --------------------------------------------------
+    // Setup - Start
     @Before
     public void setUp() throws Exception {
         services = new NorthqServices();
@@ -38,7 +45,11 @@ public class ServicesTest {
         assertEquals(network.getUserId(), "2166");
         assertTrue(network.getHouses().length >= 1);
     }
+    // Setup - End
+    // --------------------------------------------------
 
+    // --------------------------------------------------
+    // Use Case 1 - Start
     @Test
     public void plugOnTest() {
         Qplug plug = null;
@@ -79,7 +90,6 @@ public class ServicesTest {
         }
     }
 
-    /**/
     @Test
     public void plugOffTest() {
         Qplug plug = null;
@@ -121,7 +131,11 @@ public class ServicesTest {
         }
 
     }
+    // Use Case 1 - End
+    // --------------------------------------------------
 
+    // --------------------------------------------------
+    // Use Case 2 - Start
     @Test
     public void motionArmTest() throws IOException, Exception {
         // get devices find correct device and turn on:
@@ -202,6 +216,8 @@ public class ServicesTest {
                 network.getHouses()[0].id + "", "1");
         assertTrue(res.UserNotifications.size() >= 1);
     }
+    // Use Case 2 - End
+    // --------------------------------------------------
 
     // @Test
     // public void triggerTest() {
@@ -219,34 +235,82 @@ public class ServicesTest {
     // assertTrue(!services.isTriggered(mock));
     // }
 
+    // --------------------------------------------------
+    // Use Case 3 - Start
     @Test
     public void thermostatTest() throws IOException, Exception {
         NGateway gateway = network.getGateways().get(0);
         ArrayList<Thing> testThings = network.getGateways().get(0).getThings();
         Qthermostat ther = null;
+
+        // Get thermostat object - Only the last thermostat
         for (int i = 0; i < testThings.size(); i++) {
             if (testThings.get(i) instanceof Qthermostat) {
                 ther = (Qthermostat) testThings.get(i);
             }
         }
+
         if (ther == null) {
-            fail("no motion was detected in network!");
+            fail("no thermostat was detected in network!");
         }
+
         boolean res = services.setTemperature(network.getToken(), network.getUserId(), gateway.getGatewayId(), "20",
                 ther);
         assertTrue(res);
-        // fetch new status:
-        network = services.mapNorthQNetwork(user.get(0), user.get(1));
-        gateway = network.getGateways().get(0);
-        testThings = network.getGateways().get(0).getThings();
-        ther = null;
-        for (int i = 0; i < testThings.size(); i++) {
-            if (testThings.get(i) instanceof Qthermostat) {
-                ther = (Qthermostat) testThings.get(i);
-            }
-        }
-        if (ther == null) {
-            fail("no motion was detected in network!");
-        }
+
+        // fetch new status: //TODO ASK DAN!!
+        // network = services.mapNorthQNetwork(user.get(0), user.get(1));
+        // gateway = network.getGateways().get(0);
+        // testThings = network.getGateways().get(0).getThings();
+        // ther = null;
+        //
+        // for (int i = 0; i < testThings.size(); i++) {
+        // if (testThings.get(i) instanceof Qthermostat) {
+        // ther = (Qthermostat) testThings.get(i);
+        // }
+        // }
+        //
+        // if (ther == null) {
+        // fail("no thermostat was detected in network!");
+        // }
+
     }
+    // Use Case 3 - End
+    // --------------------------------------------------
+
+    // --------------------------------------------------
+    // Use Case 8 - Start
+    // NOT IMPLEMENTED
+    // Use Case 8 - End
+    // --------------------------------------------------
+
+    // --------------------------------------------------
+    // Use Case 9 - Start
+    // NOT IMPLEMENTED
+    // Use Case 9 - End
+    // --------------------------------------------------
+
+    // --------------------------------------------------
+    // Use Case 10 - Start
+    // TODO
+    // Use Case 10 - End
+    // --------------------------------------------------
+
+    // --------------------------------------------------
+    // Use Case 11 - Start
+    // NOT IMPLEMENTED
+    // Use Case 11 - End
+    // --------------------------------------------------
+
+    // --------------------------------------------------
+    // Use Case 12 - Start
+    // NOT IMPLEMENTED
+    // Use Case 12 - End
+    // --------------------------------------------------
+
+    // --------------------------------------------------
+    // Use Case 14 - Start
+    // NOT IMPLEMENTED
+    // Use Case 14 - End
+    // --------------------------------------------------
 }
