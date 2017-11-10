@@ -23,10 +23,12 @@ Import-Package:
  org.openhab.binding.northq,
  org.openhab.binding.northq.handler,
  org.junit;version="4.11.0",
+ org.mockito,
  org.hamcrest;core=split,
  org.osgi.framework,
  org.osgi.service.device,
  org.slf4j
 Require-Bundle: 
  org.hamcrest,
- org.junit
+ org.junit,
+ org.mockito;bundle-version="1.9.5"
