@@ -37,7 +37,6 @@ public class NorthQMotionHandlerTest {
 
     @Before
     public void setup() throws Exception {
-        NorthQConfig conf = new NorthQConfig();
         services = new NorthqServices();
         credentialsServices = new CredentialsService();
         user = credentialsServices.getUserCredentials();
