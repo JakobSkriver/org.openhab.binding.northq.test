@@ -16,6 +16,8 @@ import org.openhab.binding.northq.internal.model.Qmotion;
 import org.openhab.binding.northq.internal.model.Qplug;
 import org.openhab.binding.northq.internal.model.Qthermostat;
 import org.openhab.binding.northq.internal.model.Thing;
+import org.openhab.binding.northq.internal.model.json.Notification;
+import org.openhab.binding.northq.internal.model.json.UserNotification;
 import org.openhab.binding.northq.internal.model.json.UserNotificationHolder;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
@@ -313,4 +315,26 @@ public class ServicesTest {
     // NOT IMPLEMENTED
     // Use Case 14 - End
     // --------------------------------------------------
+
+    // --------------------------------------------------
+    // MISC
+    // NOT IMPLEMENTED
+    // --------------------------------------------------
+    @Test
+    public void isTriggeredTest() {
+        // Test True:
+        UserNotificationHolder un = new UserNotificationHolder();
+        un.UserNotifications = new ArrayList<UserNotification>();
+        UserNotification n = new UserNotification();
+        n.notification = new Notification();
+        n.notification.timestamp = System.currentTimeMillis() * 1000;
+        un.UserNotifications.add(n);
+        assertTrue(services.isTriggered(un));
+        // Test false:
+        un.UserNotifications.remove(0);
+        n.notification.timestamp = (1000000);
+        un.UserNotifications.add(n);
+        assertTrue(!services.isTriggered(un));
+
+    }
 }
