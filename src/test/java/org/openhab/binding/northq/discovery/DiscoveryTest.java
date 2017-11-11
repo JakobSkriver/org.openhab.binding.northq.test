@@ -1,6 +1,7 @@
 package org.openhab.binding.northq.discovery;
 
 import org.junit.Test;
+import org.openhab.binding.northq.internal.common.NorthQConfig;
 import org.openhab.binding.northq.internal.discovery.NorthQDiscoveryService;
 import org.openhab.binding.northq.internal.mock.NorthQMockNetwork;
 import org.openhab.binding.northq.internal.model.NorthNetwork;
@@ -10,10 +11,11 @@ public class DiscoveryTest {
     public void discoveryTest() {
 
         NorthQDiscoveryService ds = new NorthQDiscoveryService();
-        ds.startScan();
+        // ds.startScan();
 
         NorthQMockNetwork mocknetwork = new NorthQMockNetwork();
         NorthNetwork network = mocknetwork.getNetwork();
+        NorthQConfig.setNETWORK(network);
 
         ds.discoverAlldevices(network);
     }
