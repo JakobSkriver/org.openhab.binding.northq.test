@@ -11,7 +11,7 @@ import org.eclipse.smarthome.core.thing.binding.ThingHandlerCallback;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import static org.openhab.binding.northq.internal.common.NorthQConfig.*;
+import org.openhab.binding.northq.internal.common.NorthQConfig.*;
 import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.model.Qmotion;
 import org.openhab.binding.northq.internal.services.CredentialsService;
