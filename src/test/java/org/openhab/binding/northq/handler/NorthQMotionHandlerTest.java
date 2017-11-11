@@ -16,6 +16,9 @@ import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.model.Qmotion;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
+import org.openhab.binding.northq.handler.MockCallback;
+import org.openhab.binding.northq.handler.MockThing;
+import org.openhab.binding.northq.handler.MockCommand;
 
 public class NorthQMotionHandlerTest {
     @Mock
