@@ -90,8 +90,6 @@ public class NorthQMotionHandlerTest {
         nm.handleCommand(t, mockCommand);
         mockCommand.command = "OFF";
         nm.handleCommand(t, mockCommand);
-        nm.handleCommand(t, mockCommand);
-        mockCommand.command = "FAILURE";
         try {
 
         } catch (Exception e) {
