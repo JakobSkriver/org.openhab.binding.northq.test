@@ -23,7 +23,6 @@ public class NorthQMotionHandlerTest {
 
     @Mock
     private ThingHandlerCallback callback = new MockCallback();
-
     @Mock
     private MockCommand mockCommand = new MockCommand();
     @Mock
