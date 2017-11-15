@@ -1,6 +1,7 @@
 package org.openhab.binding.northq.handler;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
@@ -13,13 +14,13 @@ import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
 
-public class NorthQPlugHandlerTest {
+public class NorthQThermostatHandlerTest {
     NorthqServices services;
     CredentialsService credentialsServices;
     ArrayList<String> user;
     NorthNetwork network;
 
-    private NorthQPlugHandler handler;
+    private NorthQThermostatHandler handler;
 
     @Mock
     private Thing thing = new MockThing();
@@ -42,22 +43,26 @@ public class NorthQPlugHandlerTest {
 
         NorthQConfig.setNETWORK(network);
         System.out.println(NorthQConfig.getNETWORK().getGateways() != null);
-        thing.setProperty("thingID", "2"); // 2 for plug (node_id) TODO Get node_id in a different way!!
+        thing.setProperty("thingID", "4"); // 4 for thermostat (node_id) TODO Get node_id in a different way!!
         thing.setProperty("BINDING_ID", "northq"); // Always northq for the Binding_id
-        thing.setProperty("ThingUID", "qPlug"); // Depends on the test (check NorthQBindingConstants)
+        thing.setProperty("ThingUID", "qThermostat"); // Depends on the test (check NorthQBindingConstants)
 
-        handler = new NorthQPlugHandler(thing);
+        handler = new NorthQThermostatHandler(thing);
         handler.setCallback(callback);
 
     }
 
     @Test
-    public void initializeShouldCallTheCallback() {
+    public void initializeShouldCallTheCallback() throws InterruptedException {
         handler.initialize();
-        ChannelUID t = new ChannelUID("northq:qPlug:2:channelPlug");
+        TimeUnit.SECONDS.sleep(5); // maybe not needed? yea it's kinda needed (or just test scheduled-stuff)
+        ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
+        mockCommand.command = "21";
         handler.handleCommand(t, mockCommand);
-        mockCommand.command = "OFF";
+
+        mockCommand.command = "19";
         handler.handleCommand(t, mockCommand);
+
         try {
 
         } catch (Exception e) {

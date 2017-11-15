@@ -93,7 +93,7 @@ public class MockThing implements Thing {
     @Override
     public ThingUID getUID() {
         // TODO Auto-generated method stub
-        return new ThingUID();
+        return new ThingUID(properties.get("BINDING_ID"), properties.get("ThingUID"));
     }
 
     @Override
