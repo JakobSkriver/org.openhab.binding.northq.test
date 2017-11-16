@@ -55,7 +55,7 @@ public class NorthQThermostatHandlerTest {
     @Test
     public void initializeShouldCallTheCallback() throws InterruptedException {
         handler.initialize();
-        TimeUnit.SECONDS.sleep(5); // maybe not needed? yea it's kinda needed (or just test scheduled-stuff)
+        TimeUnit.SECONDS.sleep(5);
         ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
         mockCommand.command = "21";
         handler.handleCommand(t, mockCommand);
@@ -68,6 +68,26 @@ public class NorthQThermostatHandlerTest {
         } catch (Exception e) {
 
         }
+        handler.handleRemoval();
+    }
+
+    @Test
+    public void above30NotHomeTest() throws InterruptedException {
+        handler.initialize();
+        NorthQConfig.setISHOME(false);
+        NorthQConfig.setNOTHOMETEMP(32);
+        ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
+        TimeUnit.SECONDS.sleep(5);
+        handler.handleRemoval();
+    }
+
+    @Test
+    public void below5IsHomeTest() throws InterruptedException {
+        handler.initialize();
+        NorthQConfig.setISHOME(true);
+        NorthQConfig.setISHOMETEMP(3);
+        ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
+        TimeUnit.SECONDS.sleep(5);
         handler.handleRemoval();
     }
 

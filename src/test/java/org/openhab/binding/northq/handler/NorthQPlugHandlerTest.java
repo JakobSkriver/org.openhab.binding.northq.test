@@ -1,5 +1,7 @@
 package org.openhab.binding.northq.handler;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 
 import org.eclipse.smarthome.core.thing.ChannelUID;
@@ -55,9 +57,13 @@ public class NorthQPlugHandlerTest {
     public void initializeShouldCallTheCallback() {
         handler.initialize();
         ChannelUID t = new ChannelUID("northq:qPlug:2:channelPlug");
+
         handler.handleCommand(t, mockCommand);
+        assertTrue(handler.getPlug("2").getStatus());
+
         mockCommand.command = "OFF";
         handler.handleCommand(t, mockCommand);
+        assertFalse(handler.getPlug("2").getStatus());
         try {
 
         } catch (Exception e) {
