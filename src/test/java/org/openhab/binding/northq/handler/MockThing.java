@@ -87,7 +87,7 @@ public class MockThing implements Thing {
 
     @Override
     public ThingTypeUID getThingTypeUID() {
-        return null;
+        return new ThingTypeUID(properties.get("BINDING_ID"), properties.get("ThingUID"));
     }
 
     @Override

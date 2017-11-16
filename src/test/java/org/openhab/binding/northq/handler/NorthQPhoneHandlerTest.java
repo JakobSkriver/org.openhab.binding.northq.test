@@ -45,7 +45,7 @@ public class NorthQPhoneHandlerTest {
         thing.setProperty("thingID", "0"); // phone?? probably not 0!?!
         thing.setProperty("BINDING_ID", "northq"); // Always northq for the Binding_id
         thing.setProperty("ThingUID", "qPhone"); // Depends on the test (check NorthQBindingConstants)
-        thing.setProperty("name", "NICOLAJ");
+        thing.setProperty("name", "Nicolaj");
 
         handler = new NorthQPhoneHandler(thing);
 
