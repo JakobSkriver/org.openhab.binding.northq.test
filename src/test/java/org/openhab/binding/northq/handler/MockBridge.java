@@ -62,7 +62,7 @@ public class MockBridge implements Bridge {
 
     @Override
     public @Nullable ThingUID getBridgeUID() {
-        return null;
+        return new ThingUID(properties.get("BINDING_ID"), properties.get("ThingUID"));
     }
 
     @Override

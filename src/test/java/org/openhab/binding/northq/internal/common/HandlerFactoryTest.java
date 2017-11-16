@@ -45,8 +45,12 @@ public class HandlerFactoryTest {
 
     @Before
     public void setup() throws Exception {
+        services = new NorthqServices();
         credentialsServices = new CredentialsService();
         user = credentialsServices.getUserCredentials();
+        network = services.mapNorthQNetwork(user.get(0), user.get(1));
+
+        NorthQConfig.setNETWORK(network);
 
         bridge.setProperty("username", user.get(0));
         bridge.setProperty("password", user.get(1));
