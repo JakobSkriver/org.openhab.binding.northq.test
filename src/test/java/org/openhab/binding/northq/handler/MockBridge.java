@@ -7,15 +7,17 @@ import java.util.Map;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.smarthome.config.core.Configuration;
+import org.eclipse.smarthome.core.thing.Bridge;
 import org.eclipse.smarthome.core.thing.Channel;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
 import org.eclipse.smarthome.core.thing.ThingStatusInfo;
 import org.eclipse.smarthome.core.thing.ThingTypeUID;
 import org.eclipse.smarthome.core.thing.ThingUID;
+import org.eclipse.smarthome.core.thing.binding.BridgeHandler;
 import org.eclipse.smarthome.core.thing.binding.ThingHandler;
 
-public class MockThing implements Thing {
+public class MockBridge implements Bridge {
     Map<String, String> properties = new HashMap<String, String>();
 
     @Override
@@ -59,11 +61,6 @@ public class MockThing implements Thing {
     }
 
     @Override
-    public @Nullable ThingHandler getHandler() {
-        return null;
-    }
-
-    @Override
     public @Nullable ThingUID getBridgeUID() {
         return null;
     }
@@ -75,12 +72,15 @@ public class MockThing implements Thing {
 
     @Override
     public @NonNull Configuration getConfiguration() {
-        return new Configuration();
+        Configuration configuration = new Configuration();
+        configuration.put("username", properties.get("username"));
+        configuration.put("password", properties.get("password"));
+        return configuration;
     }
 
     @Override
     public ThingUID getUID() {
-        return new ThingUID(properties.get("BINDING_ID"), properties.get("ThingUID"));
+        return null;
     }
 
     @Override
@@ -112,6 +112,16 @@ public class MockThing implements Thing {
     @Override
     public void setLocation(String location) {
 
+    }
+
+    @Override
+    public List<Thing> getThings() {
+        return null;
+    }
+
+    @Override
+    public BridgeHandler getHandler() {
+        return null;
     }
 
 }
