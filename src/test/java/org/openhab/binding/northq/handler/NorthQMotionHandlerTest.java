@@ -40,22 +40,21 @@ public class NorthQMotionHandlerTest {
         user = credentialsServices.getUserCredentials();
         network = services.mapNorthQNetwork(user.get(0), user.get(1));
         NorthQConfig.setNETWORK(network);
-        System.out.println(NorthQConfig.getNETWORK().getGateways() != null);
+
         thing.setProperty("thingID", "5"); // 5 for motion
         thing.setProperty("BINDING_ID", "northq"); // Always northq for the Binding_id
         thing.setProperty("ThingUID", "qMotion"); // Depends on the test (check NorthQBindingConstants)
-        // initMocks(this);
+
         nm = new NorthQMotionHandler(thing);
         nm.setCallback(callback);
     }
 
     @Test
-    public void initializeShouldCallTheCallback() throws InterruptedException {
+    public void qMotionHandlerArmDisArmTest() throws InterruptedException {
         nm.initialize();
         TimeUnit.SECONDS.sleep(5);
         ChannelUID t = new ChannelUID("northq:qMotion:5:channelmotion");
 
-        // mockCommand.command = "ON";
         nm.handleCommand(t, mockCommand);
         assertTrue(nm.getQmotion("5").getStatus());
         TimeUnit.SECONDS.sleep(5);
@@ -64,11 +63,6 @@ public class NorthQMotionHandlerTest {
         nm.handleCommand(t, mockCommand);
         assertFalse(nm.getQmotion("5").getStatus());
         TimeUnit.SECONDS.sleep(5);
-        try {
-
-        } catch (Exception e) {
-
-        }
 
         nm.handleRemoval();
 

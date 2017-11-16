@@ -41,10 +41,11 @@ public class NorthQPhoneHandlerTest {
         network = services.mapNorthQNetwork(user.get(0), user.get(1));
 
         NorthQConfig.setNETWORK(network);
-        System.out.println(NorthQConfig.getNETWORK().getGateways() != null);
+
         thing.setProperty("thingID", "0"); // phone?? probably not 0!?!
         thing.setProperty("BINDING_ID", "northq"); // Always northq for the Binding_id
         thing.setProperty("ThingUID", "qPhone"); // Depends on the test (check NorthQBindingConstants)
+        thing.setProperty("name", "NICOLAJ");
 
         handler = new NorthQPhoneHandler(thing);
 
@@ -53,7 +54,7 @@ public class NorthQPhoneHandlerTest {
     }
 
     @Test
-    public void initializeShouldCallTheCallback() throws InterruptedException {
+    public void qPhoneChangeStatusTest() throws InterruptedException {
         handler.initialize();
         ChannelUID t = new ChannelUID("northq:qPhone:0:channelgps");
         TimeUnit.SECONDS.sleep(5);
@@ -63,11 +64,7 @@ public class NorthQPhoneHandlerTest {
         mockCommand.command = "OFF";
         handler.handleCommand(t, mockCommand);
         TimeUnit.SECONDS.sleep(5);
-        try {
 
-        } catch (Exception e) {
-
-        }
         handler.handleRemoval();
     }
 

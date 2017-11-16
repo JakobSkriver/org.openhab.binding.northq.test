@@ -1,6 +1,6 @@
 package org.openhab.binding.northq.handler;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
@@ -40,26 +40,56 @@ public class SettingsHandlerTest {
         network = services.mapNorthQNetwork(user.get(0), user.get(1));
 
         NorthQConfig.setNETWORK(network);
+        thing.setProperty("BINDING_ID", "northq");
+        thing.setProperty("ThingUID", "settings");
 
         handler = new SettingsHandler(thing);
         handler.setCallback(callback);
     }
 
     @Test
-    public void test() {
-        assertTrue(true);
+    public void updateToggleHeatTest() {
+        handler.initialize();
+        ChannelUID chnltest = new ChannelUID("northq:settings:0:channeltoggleHeatOnLocation");
+
+        assertFalse(NorthQConfig.isHEATONLOCATION());
+
+        mockCommand.command = "ON";
+        handler.handleCommand(chnltest, mockCommand);
+
+        assertTrue(NorthQConfig.isHEATONLOCATION());
+
+        mockCommand.command = "OFF";
+        handler.handleCommand(chnltest, mockCommand);
+
+        assertFalse(NorthQConfig.isHEATONLOCATION());
+
+        handler.handleRemoval();
     }
 
-    // @Test
-    // public void updateToggleHeatTest() {
-    // handler.initialize();
-    // ChannelUID chnltest = new ChannelUID("northq:settings:2:channeltoggleHeatOnLocation");
-    //
-    // assertTrue(!NorthQConfig.isHEATONLOCATION());
-    // mockCommand.command = "ON";
-    // handler.handleCommand(chnltest, mockCommand);
-    // assertTrue(NorthQConfig.isHEATONLOCATION());
-    // handler.handleRemoval();
-    // }
+    @Test
+    public void setIsHomeTempTest() {
+        handler.initialize();
+        ChannelUID chnltest = new ChannelUID("northq:settings:0:channelisHomeTemp");
+        mockCommand.command = "27";
+
+        handler.handleCommand(chnltest, mockCommand);
+
+        assertTrue(NorthQConfig.getISHOMETEMP() == 27);
+
+        handler.handleRemoval();
+    }
+
+    @Test
+    public void setNotHomeTempTest() {
+        handler.initialize();
+        ChannelUID chnltest = new ChannelUID("northq:settings:0:channelnotHomeTemp");
+        mockCommand.command = "12";
+
+        handler.handleCommand(chnltest, mockCommand);
+
+        assertTrue(NorthQConfig.getNOTHOMETEMP() == 12);
+        handler.handleRemoval();
+    }
 
 }

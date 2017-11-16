@@ -75,7 +75,9 @@ public class MockThing implements Thing {
 
     @Override
     public @NonNull Configuration getConfiguration() {
-        return new Configuration();
+        Configuration config = new Configuration();
+        config.put("name", properties.get("name"));
+        return config;
     }
 
     @Override

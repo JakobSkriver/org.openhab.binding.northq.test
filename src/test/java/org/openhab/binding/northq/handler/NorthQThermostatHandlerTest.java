@@ -42,7 +42,7 @@ public class NorthQThermostatHandlerTest {
         network = services.mapNorthQNetwork(user.get(0), user.get(1));
 
         NorthQConfig.setNETWORK(network);
-        System.out.println(NorthQConfig.getNETWORK().getGateways() != null);
+
         thing.setProperty("thingID", "4"); // 4 for thermostat (node_id) TODO Get node_id in a different way!!
         thing.setProperty("BINDING_ID", "northq"); // Always northq for the Binding_id
         thing.setProperty("ThingUID", "qThermostat"); // Depends on the test (check NorthQBindingConstants)
@@ -53,7 +53,7 @@ public class NorthQThermostatHandlerTest {
     }
 
     @Test
-    public void initializeShouldCallTheCallback() throws InterruptedException {
+    public void setTemperatureHandlerTest() throws InterruptedException {
         handler.initialize();
         TimeUnit.SECONDS.sleep(5);
         ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");

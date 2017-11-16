@@ -42,7 +42,6 @@ public class NorthQNetworkHandlerTest {
         network = services.mapNorthQNetwork(user.get(0), user.get(1));
 
         NorthQConfig.setNETWORK(network);
-        System.out.println(NorthQConfig.getNETWORK().getGateways() != null);
 
         bridge.setProperty("username", user.get(0));
         bridge.setProperty("password", user.get(1));
@@ -52,7 +51,7 @@ public class NorthQNetworkHandlerTest {
     }
 
     @Test
-    public void liveNetworkTest() {
+    public void liveNetworkHandlerTest() {
         NorthQConfig.setMOCK(false);
         handler.initialize();
 
@@ -62,7 +61,7 @@ public class NorthQNetworkHandlerTest {
     }
 
     @Test
-    public void mockNetworkTest() throws InterruptedException {
+    public void mockNetworkHandlerTest() throws InterruptedException {
         NorthQConfig.setMOCK(true);
         handler.initialize();
         NorthQConfig.setMOCK_NETWORK(null);

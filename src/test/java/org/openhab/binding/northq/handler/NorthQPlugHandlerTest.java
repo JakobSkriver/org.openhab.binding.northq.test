@@ -43,7 +43,7 @@ public class NorthQPlugHandlerTest {
         network = services.mapNorthQNetwork(user.get(0), user.get(1));
 
         NorthQConfig.setNETWORK(network);
-        System.out.println(NorthQConfig.getNETWORK().getGateways() != null);
+
         thing.setProperty("thingID", "2"); // 2 for plug (node_id) TODO Get node_id in a different way!!
         thing.setProperty("BINDING_ID", "northq"); // Always northq for the Binding_id
         thing.setProperty("ThingUID", "qPlug"); // Depends on the test (check NorthQBindingConstants)
@@ -54,7 +54,7 @@ public class NorthQPlugHandlerTest {
     }
 
     @Test
-    public void initializeShouldCallTheCallback() {
+    public void qPlugHandlerOnOffTest() {
         handler.initialize();
         ChannelUID t = new ChannelUID("northq:qPlug:2:channelPlug");
 
@@ -63,6 +63,7 @@ public class NorthQPlugHandlerTest {
 
         mockCommand.command = "OFF";
         handler.handleCommand(t, mockCommand);
+        System.out.println(handler.getPlug("2").getStatus());
         assertFalse(handler.getPlug("2").getStatus());
         try {
 
