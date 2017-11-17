@@ -90,7 +90,7 @@ public class ServicesTest {
     }
 
     @Test
-    public void plugOffTest() {
+    public void plugOffTest() throws IOException, Exception {
         Qplug plug = null;
         for (Thing t : network.getGateways().get(0).getThings()) {
             if (t instanceof Qplug) {
@@ -128,7 +128,8 @@ public class ServicesTest {
             e.printStackTrace();
 
         }
-
+        // Plug is turned on for convenience
+        services.turnOnPlug(plug, network.getToken(), network.getUserId(), network.getGateways().get(0).getGatewayId());
     }
     // Use Case 1 - End
     // --------------------------------------------------

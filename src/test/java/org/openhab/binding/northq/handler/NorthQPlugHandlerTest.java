@@ -36,7 +36,6 @@ public class NorthQPlugHandlerTest {
     @Mock
     private ChannelUID mockChannel;
 
-    // 90.1% Coverage appear to be the best we can do, without properly emulating the northq network
     @Before
     public void setUp() throws Exception {
 
@@ -47,7 +46,7 @@ public class NorthQPlugHandlerTest {
 
         NorthQConfig.setNETWORK(network);
 
-        thing.setProperty("thingID", "2"); // 2 for plug (node_id) TODO Get node_id in a different way!!
+        thing.setProperty("thingID", "2"); // 2 for plug (node_id)
         thing.setProperty("BINDING_ID", "northq"); // Always northq for the Binding_id
         thing.setProperty("ThingUID", "qPlug"); // Depends on the test (check NorthQBindingConstants)
 
@@ -61,18 +60,17 @@ public class NorthQPlugHandlerTest {
         handler.initialize();
         ChannelUID t = new ChannelUID("northq:qPlug:2:channelPlug");
 
+        // Sending an On command to the handlecommand
         handler.handleCommand(t, mockCommand);
+        // Checking if the status has changed to On
         assertTrue(handler.getPlug("2").getStatus());
 
+        // Sending an Off command to the handlecommand
         mockCommand.command = "OFF";
         handler.handleCommand(t, mockCommand);
-        System.out.println(handler.getPlug("2").getStatus());
+        // Checking if the status has changed to On
         assertFalse(handler.getPlug("2").getStatus());
-        try {
 
-        } catch (Exception e) {
-
-        }
         handler.handleRemoval();
     }
 

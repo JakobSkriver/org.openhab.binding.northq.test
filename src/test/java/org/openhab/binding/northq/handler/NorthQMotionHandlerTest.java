@@ -22,7 +22,6 @@ import org.openhab.binding.northq.internal.services.NorthqServices;
 public class NorthQMotionHandlerTest {
     @Mock
     private Thing thing = new MockThing();
-
     @Mock
     private ThingHandlerCallback callback = new MockCallback();
     @Mock
@@ -58,12 +57,16 @@ public class NorthQMotionHandlerTest {
         TimeUnit.SECONDS.sleep(5);
         ChannelUID t = new ChannelUID("northq:qMotion:5:channelmotion");
 
+        // Sending an arm command to the handleCommand
         handler.handleCommand(t, mockCommand);
+        // Check if status of qmotion is armed
         assertTrue(handler.getQmotion("5").getStatus());
         TimeUnit.SECONDS.sleep(5);
 
+        // Sending an disarm command to the handleCommand
         mockCommand.command = "OFF";
         handler.handleCommand(t, mockCommand);
+        // Check if status of qmotion is disarmed
         assertFalse(handler.getQmotion("5").getStatus());
         TimeUnit.SECONDS.sleep(5);
 

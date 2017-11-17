@@ -24,10 +24,8 @@ public class NorthQPhoneHandlerTest {
     NorthNetwork network;
 
     private NorthQPhoneHandler handler;
-
     @Mock
     private Thing thing = new MockThing();
-
     @Mock
     private ThingHandlerCallback callback = new MockCallback();
     @Mock
@@ -45,7 +43,7 @@ public class NorthQPhoneHandlerTest {
 
         NorthQConfig.setNETWORK(network);
 
-        thing.setProperty("thingID", "0"); // phone?? probably not 0!?!
+        thing.setProperty("thingID", "0"); // Test id for phone
         thing.setProperty("BINDING_ID", "northq"); // Always northq for the Binding_id
         thing.setProperty("ThingUID", "qPhone"); // Depends on the test (check NorthQBindingConstants)
         thing.setProperty("name", "Nicolaj");
@@ -61,9 +59,12 @@ public class NorthQPhoneHandlerTest {
         handler.initialize();
         ChannelUID t = new ChannelUID("northq:qPhone:0:channelgps");
         TimeUnit.SECONDS.sleep(5);
-        handler.handleCommand(t, mockCommand);
 
+        // Sending an On command to the phone
+        handler.handleCommand(t, mockCommand);
         TimeUnit.SECONDS.sleep(5);
+
+        // Sending an Off command to the phone
         mockCommand.command = "OFF";
         handler.handleCommand(t, mockCommand);
         TimeUnit.SECONDS.sleep(5);

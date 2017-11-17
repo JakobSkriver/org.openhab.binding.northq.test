@@ -56,7 +56,9 @@ public class NorthQNetworkHandlerTest {
 
     @Test
     public void liveNetworkHandlerTest() {
+        // Setting the network used to the live devices
         NorthQConfig.setMOCK(false);
+        // Initializing the handler with a live network
         handler.initialize();
 
         handler.handleCommand(mockChannel, mockCommand);
@@ -66,8 +68,11 @@ public class NorthQNetworkHandlerTest {
 
     @Test
     public void mockNetworkHandlerTest() throws InterruptedException {
+        // Setting the network used to the mock devices
         NorthQConfig.setMOCK(true);
+        // Initializing the handler with a mock network
         handler.initialize();
+
         NorthQConfig.setMOCK_NETWORK(null);
         TimeUnit.SECONDS.sleep(10);
         handler.handleRemoval();

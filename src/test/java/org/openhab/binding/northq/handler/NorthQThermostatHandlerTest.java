@@ -1,5 +1,7 @@
 package org.openhab.binding.northq.handler;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -60,37 +62,52 @@ public class NorthQThermostatHandlerTest {
         handler.initialize();
         TimeUnit.SECONDS.sleep(5);
         ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
+
+        // Sending a command to handlecommand with a temp value of 21
         mockCommand.command = "21";
         handler.handleCommand(t, mockCommand);
-
+        assertTrue(handler.getThermostat("4").getTemp() == 21);
+        // Sending a command to handlecommand with a temp value of 19
         mockCommand.command = "19";
         handler.handleCommand(t, mockCommand);
+        assertTrue(handler.getThermostat("4").getTemp() == 19);
 
-        try {
-
-        } catch (Exception e) {
-
-        }
         handler.handleRemoval();
     }
 
     @Test
     public void above30NotHomeTest() throws InterruptedException {
         handler.initialize();
+        // Configurating that noone is home
         NorthQConfig.setISHOME(false);
+
+        // Setting the temperature for when noone is home to 32
         NorthQConfig.setNOTHOMETEMP(32);
-        ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
         TimeUnit.SECONDS.sleep(5);
+
+        // Checking that NotHomeTemp is set to 32
+        assertTrue(NorthQConfig.getNOTHOMETEMP() == 32);
+
+        ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
+
         handler.handleRemoval();
     }
 
     @Test
     public void below5IsHomeTest() throws InterruptedException {
         handler.initialize();
+        // Configurating that noone is home
         NorthQConfig.setISHOME(true);
+
+        // Setting the temperature for when someone is home to 3
         NorthQConfig.setISHOMETEMP(3);
-        ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
         TimeUnit.SECONDS.sleep(5);
+
+        // Checking that the temperature when someone is home to 3
+        assertTrue(NorthQConfig.getISHOMETEMP() == 3);
+
+        ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
+
         handler.handleRemoval();
     }
 
