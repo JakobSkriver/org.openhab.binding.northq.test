@@ -242,38 +242,9 @@ public class ServicesTest {
                 ther);
         assertTrue(res);
 
-        // fetch new status: //TODO ASK DAN!!
-        // network = services.mapNorthQNetwork(user.get(0), user.get(1));
-        // gateway = network.getGateways().get(0);
-        // testThings = network.getGateways().get(0).getThings();
-        // ther = null;
-        //
-        // for (int i = 0; i < testThings.size(); i++) {
-        // if (testThings.get(i) instanceof Qthermostat) {
-        // ther = (Qthermostat) testThings.get(i);
-        // }
-        // }
-        //
-        // if (ther == null) {
-        // fail("no thermostat was detected in network!");
-        // }
-
     }
-    // @Test
-    // public void triggerTest() {
-    // UserNotificationHolder mock = new UserNotificationHolder();
-    // UserNotification mockNot = new UserNotification();
-    // mockNot.notification = new Notification();
-    // mockNot.notification.timestamp = System.currentTimeMillis() / 1000;
-    // mock.UserNotifications = new ArrayList<UserNotification>();
-    // mock.UserNotifications.add(mockNot);
-    // assertTrue(services.isTriggered(mock));
-    //
-    // mockNot.notification.timestamp = 20000;
-    // mock.UserNotifications.remove(0);
-    // mock.UserNotifications.add(mockNot);
-    // assertTrue(!services.isTriggered(mock));
-    // }
+    // Use Case 3- End
+    // --------------------------------------------------
 
     @Test
     public void isTriggeredTest() {
@@ -285,6 +256,7 @@ public class ServicesTest {
         n.notification.timestamp = System.currentTimeMillis() * 1000;
         un.UserNotifications.add(n);
         assertTrue(services.isTriggered(un));
+
         // Test false:
         un.UserNotifications.remove(0);
         n.notification.timestamp = (1000000);

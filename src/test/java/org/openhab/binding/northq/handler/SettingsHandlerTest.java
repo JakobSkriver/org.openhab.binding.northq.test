@@ -55,16 +55,21 @@ public class SettingsHandlerTest {
         handler.initialize();
         ChannelUID chnltest = new ChannelUID("northq:settings:0:channeltoggleHeatOnLocation");
 
+        // Checking that HeatOnLocation is set to false
         assertFalse(NorthQConfig.isHEATONLOCATION());
 
+        // Sending a command to handlecommand to turn on HeatOnLocation feature
         mockCommand.command = "ON";
         handler.handleCommand(chnltest, mockCommand);
 
+        // Checking that HeatOnLocation is set to true
         assertTrue(NorthQConfig.isHEATONLOCATION());
 
+        // Sending a command to handlecommand to turn off HeatOnLocation feature
         mockCommand.command = "OFF";
         handler.handleCommand(chnltest, mockCommand);
 
+        // Checking that HeatOnLocation is set to false
         assertFalse(NorthQConfig.isHEATONLOCATION());
 
         handler.handleRemoval();
@@ -76,8 +81,10 @@ public class SettingsHandlerTest {
         ChannelUID chnltest = new ChannelUID("northq:settings:0:channelisHomeTemp");
         mockCommand.command = "27";
 
+        // Setting the IsHomeTemp via handlecommand
         handler.handleCommand(chnltest, mockCommand);
 
+        // Checking if the IsHomeTemp is set in northQconfig
         assertTrue(NorthQConfig.getISHOMETEMP() == 27);
 
         handler.handleRemoval();
@@ -89,8 +96,10 @@ public class SettingsHandlerTest {
         ChannelUID chnltest = new ChannelUID("northq:settings:0:channelnotHomeTemp");
         mockCommand.command = "12";
 
+        // Setting the NotHomeTemp via handlecommand
         handler.handleCommand(chnltest, mockCommand);
 
+        // Checking if the IsHomeTemp is set in northQconfig
         assertTrue(NorthQConfig.getNOTHOMETEMP() == 12);
         handler.handleRemoval();
     }

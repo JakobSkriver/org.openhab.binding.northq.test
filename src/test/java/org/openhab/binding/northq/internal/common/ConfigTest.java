@@ -11,7 +11,7 @@ import org.openhab.binding.northq.internal.model.NorthNetwork;
 public class ConfigTest {
     @Test
     public void credentialsTest() {
-        // Test setters and getters:
+        // Test setters and getters for credentials:
         NorthQConfig.setUSERNAME("hello");
         NorthQConfig.setPASSWORD("hello");
         assertEquals(NorthQConfig.getUSERNAME(), "hello");
@@ -20,7 +20,7 @@ public class ConfigTest {
 
     @Test
     public void heatAndIsHomeTest() {
-        // Test setters and getters:
+        // Test setters and getters for heat functionality:
         NorthQConfig.setISHOME(false);
         NorthQConfig.setHEATONLOCATION(true);
         NorthQConfig.setISHOMETEMP(20);
@@ -34,6 +34,7 @@ public class ConfigTest {
 
     @Test
     public void networkTest() {
+        // Checking that network is set in NorthQConfig
         NorthNetwork testNetwork = new NorthNetwork(null, null, null, null);
         NorthQConfig.setNETWORK(testNetwork);
         assertTrue(NorthQConfig.getNETWORK().equals(testNetwork));
@@ -41,6 +42,7 @@ public class ConfigTest {
 
     @Test
     public void mockActivationTest() {
+        // Checking that the Mock is activated in NorthQConfig
         NorthQConfig.setMOCK(true);
         assertTrue(NorthQConfig.isMOCK());
 
@@ -51,6 +53,7 @@ public class ConfigTest {
 
     @Test
     public void phoneConfigTest() {
+        // Checking PhoneMap is set in NorthQConfigs
         NorthQConfig.setPHONE_MAP(new HashMap<>());
         NorthQConfig.getPHONE_MAP().put("test", new Boolean(true));
 

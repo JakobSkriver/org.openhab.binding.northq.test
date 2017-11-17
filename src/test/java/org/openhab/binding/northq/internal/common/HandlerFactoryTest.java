@@ -65,6 +65,7 @@ public class HandlerFactoryTest {
     @Test
     public void networkThingTypeTest() {
         bridge.setProperty("ThingUID", "northqnetwork");
+        // Creating a NetworkHandler
         NorthQNetworkHandler handler = (NorthQNetworkHandler) handlerFactory.createHandler(bridge);
         handler.setCallback(callback);
         handler.handleRemoval();
@@ -73,6 +74,7 @@ public class HandlerFactoryTest {
     @Test
     public void plugThingTypeTest() {
         thing.setProperty("ThingUID", "qPlug");
+        // Creating a PlugHandler
         NorthQPlugHandler handler = (NorthQPlugHandler) handlerFactory.createHandler(thing);
         handler.setCallback(callback);
         handler.handleRemoval();
@@ -81,6 +83,7 @@ public class HandlerFactoryTest {
     @Test
     public void motionThingTypeTest() {
         thing.setProperty("ThingUID", "qMotion");
+        // Creating a MotionHandler
         NorthQMotionHandler handler = (NorthQMotionHandler) handlerFactory.createHandler(thing);
         handler.setCallback(callback);
         handler.handleRemoval();
@@ -89,6 +92,7 @@ public class HandlerFactoryTest {
     @Test
     public void thermostatThingTypeTest() throws InterruptedException {
         thing.setProperty("ThingUID", "qThermostat");
+        // Creating a ThermostatHandler
         NorthQThermostatHandler handler = (NorthQThermostatHandler) handlerFactory.createHandler(thing);
         handler.setCallback(callback);
         handler.handleRemoval();
@@ -99,6 +103,7 @@ public class HandlerFactoryTest {
     public void phoneThingTypeTest() {
         thing.setProperty("ThingUID", "qPhone");
         handlerFactory.supportsThingType(thing.getThingTypeUID());
+        // Creating a PhoneHandler
         NorthQPhoneHandler handler = (NorthQPhoneHandler) handlerFactory.createHandler(thing);
         handler.setCallback(callback);
         handler.handleRemoval();
@@ -107,6 +112,7 @@ public class HandlerFactoryTest {
     @Test
     public void settingsThingTypeTest() {
         thing.setProperty("ThingUID", "settings");
+        // Creating a SettingsHandler
         SettingsHandler handler = (SettingsHandler) handlerFactory.createHandler(thing);
         handler.setCallback(callback);
         handler.handleRemoval();
@@ -115,6 +121,7 @@ public class HandlerFactoryTest {
     @Test
     public void mockThingTypeTest() {
         thing.setProperty("ThingUID", "mocknetwork");
+        // Creating a MockNetworkHandler
         MockNetworkHandler handler = (MockNetworkHandler) handlerFactory.createHandler(thing);
         handler.setCallback(callback);
         handler.handleRemoval();
@@ -123,6 +130,7 @@ public class HandlerFactoryTest {
     @Test
     public void nullThingTest() {
         thing.setProperty("ThingUID", "NULL");
+        // Creating a none supported type handler
         handlerFactory.createHandler(thing);
     }
 }

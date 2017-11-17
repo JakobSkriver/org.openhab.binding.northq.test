@@ -5,7 +5,7 @@ import org.junit.Test;
 public class ReadWriteLockTest {
     @Test
     public void readWriteLockTest() {
-        // Test no errors occur
+        // Checking that concurrent locks and Read/Writes are functioning
         ReadWriteLock.getInstance().lockWrite();
         ReadWriteLock.getInstance().unlockWrite();
         ReadWriteLock.getInstance().lockRead();

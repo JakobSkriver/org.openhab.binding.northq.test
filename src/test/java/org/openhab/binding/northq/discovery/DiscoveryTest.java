@@ -11,12 +11,11 @@ public class DiscoveryTest {
     public void discoveryTest() {
 
         NorthQDiscoveryService ds = new NorthQDiscoveryService();
-        // ds.startScan();
-
+        // Setting up the network to a mock network
         NorthQMockNetwork mocknetwork = new NorthQMockNetwork();
         NorthNetwork network = mocknetwork.getNetwork();
         NorthQConfig.setNETWORK(network);
-
+        // Scan all devices for the network
         ds.discoverAlldevices(network);
     }
 
