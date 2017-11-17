@@ -1,4 +1,4 @@
-package org.openhab.binding.northq.handler;
+package org.openhab.binding.northq.internal.mock;
 
 import org.eclipse.smarthome.core.types.Command;
 

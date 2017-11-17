@@ -13,6 +13,7 @@ import org.openhab.binding.northq.handler.NorthQPhoneHandler;
 import org.openhab.binding.northq.internal.model.NGateway;
 import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.model.Qmotion;
+import org.openhab.binding.northq.internal.model.Qplug;
 import org.openhab.binding.northq.internal.model.Qthermostat;
 import org.openhab.binding.northq.internal.model.Thing;
 import org.openhab.binding.northq.internal.model.json.Notification;
@@ -27,9 +28,6 @@ public class ServicesTest {
     ArrayList<String> user;
     NorthNetwork network;
     NorthQPhoneHandler phoneHandler;
-
-    // Use Cases we cant test
-    // 4, 5, 6, 7, 13
 
     // --------------------------------------------------
     // Setup - Start
@@ -51,87 +49,87 @@ public class ServicesTest {
 
     // --------------------------------------------------
     // Use Case 1 - Start
-    // @Test
-    // public void plugOnTest() {
-    // Qplug plug = null;
-    // for (Thing t : network.getGateways().get(0).getThings()) {
-    // if (t instanceof Qplug) {
-    // plug = (Qplug) t;
-    // }
-    // }
-    // try {
-    // if (plug != null) {
-    // boolean res1 = services.turnOffPlug(plug, network.getToken(), network.getUserId(),
-    // network.getGateways().get(0).getGatewayId());
-    // boolean res2 = services.turnOnPlug(plug, network.getToken(), network.getUserId(),
-    // network.getGateways().get(0).getGatewayId());
-    // assertTrue(res1);
-    // assertTrue(res2);
-    //
-    // }
-    // } catch (IOException ioe) {
-    // ioe.printStackTrace();
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    //
-    // try {
-    // NorthNetwork newNetwork = services.mapNorthQNetwork(user.get(0), user.get(1));
-    // for (Thing t : newNetwork.getGateways().get(0).getThings()) {
-    // if (t instanceof Qplug) {
-    // Qplug updatedPlug = (Qplug) t;
-    // if (updatedPlug.getNodeID() == updatedPlug.getNodeID()) {
-    // assertTrue(updatedPlug.getStatus());
-    // }
-    // }
-    // }
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    //
-    // }
-    // }
-    //
-    // @Test
-    // public void plugOffTest() {
-    // Qplug plug = null;
-    // for (Thing t : network.getGateways().get(0).getThings()) {
-    // if (t instanceof Qplug) {
-    // plug = (Qplug) t;
-    // }
-    // }
-    // try {
-    // if (plug != null) {
-    // boolean res2 = services.turnOnPlug(plug, network.getToken(), network.getUserId(),
-    // network.getGateways().get(0).getGatewayId());
-    // boolean res1 = services.turnOffPlug(plug, network.getToken(), network.getUserId(),
-    // network.getGateways().get(0).getGatewayId());
-    //
-    // assertTrue(res1); // prone to false negatives - rerun code likely an http issue
-    // assertTrue(res2);
-    //
-    // }
-    // } catch (IOException ioe) {
-    // ioe.printStackTrace();
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    //
-    // try {
-    // NorthNetwork newNetwork = services.mapNorthQNetwork(user.get(0), user.get(1));
-    // for (Thing t : newNetwork.getGateways().get(0).getThings()) {
-    // if (t instanceof Qplug) {
-    // Qplug updatedPlug = (Qplug) t;
-    // if (updatedPlug.getNodeID() == updatedPlug.getNodeID()) {
-    // assertTrue(!updatedPlug.getStatus());
-    // }
-    // }
-    // }
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    //
-    // }
-    //
-    // }
+    @Test
+    public void plugOnTest() {
+        Qplug plug = null;
+        for (Thing t : network.getGateways().get(0).getThings()) {
+            if (t instanceof Qplug) {
+                plug = (Qplug) t;
+            }
+        }
+        try {
+            if (plug != null) {
+                boolean res1 = services.turnOffPlug(plug, network.getToken(), network.getUserId(),
+                        network.getGateways().get(0).getGatewayId());
+                boolean res2 = services.turnOnPlug(plug, network.getToken(), network.getUserId(),
+                        network.getGateways().get(0).getGatewayId());
+                assertTrue(res1);
+                assertTrue(res2);
+
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            NorthNetwork newNetwork = services.mapNorthQNetwork(user.get(0), user.get(1));
+            for (Thing t : newNetwork.getGateways().get(0).getThings()) {
+                if (t instanceof Qplug) {
+                    Qplug updatedPlug = (Qplug) t;
+                    if (updatedPlug.getNodeID() == updatedPlug.getNodeID()) {
+                        assertTrue(updatedPlug.getStatus());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    @Test
+    public void plugOffTest() {
+        Qplug plug = null;
+        for (Thing t : network.getGateways().get(0).getThings()) {
+            if (t instanceof Qplug) {
+                plug = (Qplug) t;
+            }
+        }
+        try {
+            if (plug != null) {
+                boolean res2 = services.turnOnPlug(plug, network.getToken(), network.getUserId(),
+                        network.getGateways().get(0).getGatewayId());
+                boolean res1 = services.turnOffPlug(plug, network.getToken(), network.getUserId(),
+                        network.getGateways().get(0).getGatewayId());
+
+                assertTrue(res1); // prone to false negatives - rerun code likely an http issue
+                assertTrue(res2);
+
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            NorthNetwork newNetwork = services.mapNorthQNetwork(user.get(0), user.get(1));
+            for (Thing t : newNetwork.getGateways().get(0).getThings()) {
+                if (t instanceof Qplug) {
+                    Qplug updatedPlug = (Qplug) t;
+                    if (updatedPlug.getNodeID() == updatedPlug.getNodeID()) {
+                        assertTrue(!updatedPlug.getStatus());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+    }
     // Use Case 1 - End
     // --------------------------------------------------
 
@@ -220,22 +218,6 @@ public class ServicesTest {
     // Use Case 2 - End
     // --------------------------------------------------
 
-    // @Test
-    // public void triggerTest() {
-    // UserNotificationHolder mock = new UserNotificationHolder();
-    // UserNotification mockNot = new UserNotification();
-    // mockNot.notification = new Notification();
-    // mockNot.notification.timestamp = System.currentTimeMillis() / 1000;
-    // mock.UserNotifications = new ArrayList<UserNotification>();
-    // mock.UserNotifications.add(mockNot);
-    // assertTrue(services.isTriggered(mock));
-    //
-    // mockNot.notification.timestamp = 20000;
-    // mock.UserNotifications.remove(0);
-    // mock.UserNotifications.add(mockNot);
-    // assertTrue(!services.isTriggered(mock));
-    // }
-
     // --------------------------------------------------
     // Use Case 3 - Start
     @Test
@@ -276,6 +258,21 @@ public class ServicesTest {
         // }
 
     }
+    // @Test
+    // public void triggerTest() {
+    // UserNotificationHolder mock = new UserNotificationHolder();
+    // UserNotification mockNot = new UserNotification();
+    // mockNot.notification = new Notification();
+    // mockNot.notification.timestamp = System.currentTimeMillis() / 1000;
+    // mock.UserNotifications = new ArrayList<UserNotification>();
+    // mock.UserNotifications.add(mockNot);
+    // assertTrue(services.isTriggered(mock));
+    //
+    // mockNot.notification.timestamp = 20000;
+    // mock.UserNotifications.remove(0);
+    // mock.UserNotifications.add(mockNot);
+    // assertTrue(!services.isTriggered(mock));
+    // }
 
     @Test
     public void isTriggeredTest() {

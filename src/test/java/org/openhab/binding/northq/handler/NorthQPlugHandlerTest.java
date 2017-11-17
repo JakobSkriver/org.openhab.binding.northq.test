@@ -1,13 +1,19 @@
 package org.openhab.binding.northq.handler;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.binding.ThingHandlerCallback;
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.openhab.binding.northq.internal.common.NorthQConfig;
+import org.openhab.binding.northq.internal.mock.MockCallback;
+import org.openhab.binding.northq.internal.mock.MockCommand;
+import org.openhab.binding.northq.internal.mock.MockThing;
 import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
@@ -50,24 +56,24 @@ public class NorthQPlugHandlerTest {
 
     }
 
-    // @Test
-    // public void qPlugHandlerOnOffTest() {
-    // handler.initialize();
-    // ChannelUID t = new ChannelUID("northq:qPlug:2:channelPlug");
-    //
-    // handler.handleCommand(t, mockCommand);
-    // assertTrue(handler.getPlug("2").getStatus());
-    //
-    // mockCommand.command = "OFF";
-    // handler.handleCommand(t, mockCommand);
-    // System.out.println(handler.getPlug("2").getStatus());
-    // assertFalse(handler.getPlug("2").getStatus());
-    // try {
-    //
-    // } catch (Exception e) {
-    //
-    // }
-    // handler.handleRemoval();
-    // }
+    @Test
+    public void qPlugHandlerOnOffTest() {
+        handler.initialize();
+        ChannelUID t = new ChannelUID("northq:qPlug:2:channelPlug");
+
+        handler.handleCommand(t, mockCommand);
+        assertTrue(handler.getPlug("2").getStatus());
+
+        mockCommand.command = "OFF";
+        handler.handleCommand(t, mockCommand);
+        System.out.println(handler.getPlug("2").getStatus());
+        assertFalse(handler.getPlug("2").getStatus());
+        try {
+
+        } catch (Exception e) {
+
+        }
+        handler.handleRemoval();
+    }
 
 }

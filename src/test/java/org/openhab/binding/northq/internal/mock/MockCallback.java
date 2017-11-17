@@ -1,4 +1,4 @@
-package org.openhab.binding.northq.handler;
+package org.openhab.binding.northq.internal.mock;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.smarthome.config.core.Configuration;

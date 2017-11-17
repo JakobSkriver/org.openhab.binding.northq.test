@@ -12,6 +12,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.openhab.binding.northq.internal.common.NorthQConfig;
+import org.openhab.binding.northq.internal.mock.MockCallback;
+import org.openhab.binding.northq.internal.mock.MockCommand;
+import org.openhab.binding.northq.internal.mock.MockThing;
 import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
@@ -27,7 +30,7 @@ public class NorthQMotionHandlerTest {
     @Mock
     private ChannelUID mockChannel;
 
-    private NorthQMotionHandler nm;
+    private NorthQMotionHandler handler;
     NorthqServices services;
     CredentialsService credentialsServices;
     ArrayList<String> user;
@@ -45,26 +48,26 @@ public class NorthQMotionHandlerTest {
         thing.setProperty("BINDING_ID", "northq"); // Always northq for the Binding_id
         thing.setProperty("ThingUID", "qMotion"); // Depends on the test (check NorthQBindingConstants)
 
-        nm = new NorthQMotionHandler(thing);
-        nm.setCallback(callback);
+        handler = new NorthQMotionHandler(thing);
+        handler.setCallback(callback);
     }
 
     @Test
     public void qMotionHandlerArmDisArmTest() throws InterruptedException {
-        nm.initialize();
+        handler.initialize();
         TimeUnit.SECONDS.sleep(5);
         ChannelUID t = new ChannelUID("northq:qMotion:5:channelmotion");
 
-        nm.handleCommand(t, mockCommand);
-        assertTrue(nm.getQmotion("5").getStatus());
+        handler.handleCommand(t, mockCommand);
+        assertTrue(handler.getQmotion("5").getStatus());
         TimeUnit.SECONDS.sleep(5);
 
         mockCommand.command = "OFF";
-        nm.handleCommand(t, mockCommand);
-        assertFalse(nm.getQmotion("5").getStatus());
+        handler.handleCommand(t, mockCommand);
+        assertFalse(handler.getQmotion("5").getStatus());
         TimeUnit.SECONDS.sleep(5);
 
-        nm.handleRemoval();
+        handler.handleRemoval();
 
     }
 
