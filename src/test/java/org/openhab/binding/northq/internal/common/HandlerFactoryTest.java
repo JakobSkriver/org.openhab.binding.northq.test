@@ -15,7 +15,7 @@ import org.openhab.binding.northq.handler.NorthQNetworkHandler;
 import org.openhab.binding.northq.handler.NorthQPhoneHandler;
 import org.openhab.binding.northq.handler.NorthQPlugHandler;
 import org.openhab.binding.northq.handler.NorthQThermostatHandler;
-import org.openhab.binding.northq.handler.SettingsHandler;
+import org.openhab.binding.northq.handler.GatewayHandler;
 import org.openhab.binding.northq.internal.NorthQHandlerFactory;
 import org.openhab.binding.northq.internal.mock.MockBridge;
 import org.openhab.binding.northq.internal.mock.MockCallback;
@@ -113,7 +113,7 @@ public class HandlerFactoryTest {
     public void settingsThingTypeTest() {
         thing.setProperty("ThingUID", "settings");
         // Creating a SettingsHandler
-        SettingsHandler handler = (SettingsHandler) handlerFactory.createHandler(thing);
+        GatewayHandler handler = (GatewayHandler) handlerFactory.createHandler(thing);
         handler.setCallback(callback);
         handler.handleRemoval();
     }
