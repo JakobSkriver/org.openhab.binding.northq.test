@@ -2,7 +2,9 @@ Manifest-Version: 1.0
 Bundle-ClassPath: .,
  lib/guava-23.0.jar,
  lib/StandAlone.jar,
- lib/hamcrest-core-1.3.jar
+ lib/hamcrest-core-1.3.jar,
+ lib/jacoco-maven-plugin-0.7.9.jar,
+ lib/jacoco-maven-plugin-0.7.4.201502262128.jar
 Bundle-ManifestVersion: 2
 Bundle-Name: northq.test Binding
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
