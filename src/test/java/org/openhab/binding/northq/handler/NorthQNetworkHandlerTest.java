@@ -49,6 +49,7 @@ public class NorthQNetworkHandlerTest {
 
         bridge.setProperty("username", user.get(0));
         bridge.setProperty("password", user.get(1));
+        bridge.setProperty("homelocation", "homelocation");
 
         handler = new NorthQNetworkHandler(bridge);
         handler.setCallback(callback);
@@ -76,5 +77,6 @@ public class NorthQNetworkHandlerTest {
         NorthQConfig.setMOCK_NETWORK(null);
         TimeUnit.SECONDS.sleep(10);
         handler.handleRemoval();
+        NorthQConfig.setMOCK(false);
     }
 }

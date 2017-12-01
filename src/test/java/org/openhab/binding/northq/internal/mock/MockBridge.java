@@ -75,6 +75,7 @@ public class MockBridge implements Bridge {
         Configuration configuration = new Configuration();
         configuration.put("username", properties.get("username"));
         configuration.put("password", properties.get("password"));
+        configuration.put("homelocation", properties.get("homelocation"));
         return configuration;
     }
 

@@ -17,6 +17,7 @@ public class DiscoveryTest {
         NorthQConfig.setNETWORK(network);
         // Scan all devices for the network
         ds.discoverAlldevices(network);
+
     }
 
 }

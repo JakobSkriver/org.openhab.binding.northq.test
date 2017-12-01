@@ -66,6 +66,8 @@ public class NorthQThermostatHandlerTest {
         // Sending a command to handlecommand with a temp value of 21
         mockCommand.command = "21";
         handler.handleCommand(t, mockCommand);
+        handler.getThermostat("4");
+        handler.getThermostat("4").getTemp();
         assertTrue(handler.getThermostat("4").getTemp() == 21);
         // Sending a command to handlecommand with a temp value of 19
         mockCommand.command = "19";

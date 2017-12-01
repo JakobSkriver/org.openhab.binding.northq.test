@@ -49,6 +49,8 @@ public class ConfigTest {
         NorthQMockNetwork mn = new NorthQMockNetwork();
         NorthQConfig.setMOCK_NETWORK(mn);
         assertTrue(mn.equals(NorthQConfig.getMOCK_NETWORK()));
+
+        NorthQConfig.setMOCK(false);
     }
 
     @Test
