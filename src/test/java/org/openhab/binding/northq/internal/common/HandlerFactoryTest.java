@@ -9,8 +9,8 @@ import org.eclipse.smarthome.core.thing.binding.ThingHandlerCallback;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.openhab.binding.northq.handler.GatewayHandler;
 import org.openhab.binding.northq.handler.MockNetworkHandler;
+import org.openhab.binding.northq.handler.NorthQGatewayHandler;
 import org.openhab.binding.northq.handler.NorthQMotionHandler;
 import org.openhab.binding.northq.handler.NorthQNetworkHandler;
 import org.openhab.binding.northq.handler.NorthQPhoneHandler;
@@ -113,7 +113,7 @@ public class HandlerFactoryTest {
     public void settingsThingTypeTest() {
         thing.setProperty("ThingUID", "gateway");
         // Creating a SettingsHandler
-        GatewayHandler handler = (GatewayHandler) handlerFactory.createHandler(thing);
+        NorthQGatewayHandler handler = (NorthQGatewayHandler) handlerFactory.createHandler(thing);
         handler.setCallback(callback);
         handler.handleRemoval();
     }

@@ -29,7 +29,7 @@ public class SettingsHandlerTest {
     @Mock
     private ChannelUID mockChannel;
 
-    private GatewayHandler handler;
+    private NorthQGatewayHandler handler;
     NorthqServices services;
     CredentialsService credentialsServices;
     ArrayList<String> user;
@@ -46,7 +46,7 @@ public class SettingsHandlerTest {
         thing.setProperty("BINDING_ID", "northq");
         thing.setProperty("ThingUID", "settings");
 
-        handler = new GatewayHandler(thing);
+        handler = new NorthQGatewayHandler(thing);
         handler.setCallback(callback);
     }
 
