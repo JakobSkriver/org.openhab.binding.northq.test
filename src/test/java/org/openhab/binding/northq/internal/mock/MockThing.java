@@ -31,7 +31,7 @@ public class MockThing implements Thing {
     }
 
     @Override
-    public @NonNull List<Channel> getChannels() {
+    public @NonNull List<@NonNull Channel> getChannels() {
         List<Channel> list = new ArrayList<Channel>();
         Channel channel = new Channel(null, "");
         list.add(channel);
@@ -109,7 +109,7 @@ public class MockThing implements Thing {
     }
 
     @Override
-    public void setProperties(@NonNull Map<String, @NonNull String> properties) {
+    public void setProperties(@NonNull Map<@NonNull String, @NonNull String> properties) {
 
     }
 
