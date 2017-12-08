@@ -91,7 +91,7 @@ public class MockThing implements Thing {
     }
 
     @Override
-    public @NonNull Map<@NonNull String, String> getProperties() {
+    public Map<@NonNull String, @NonNull String> getProperties() {
         return properties;
     }
 
@@ -102,7 +102,7 @@ public class MockThing implements Thing {
     }
 
     @Override
-    public void setProperties(@NonNull Map<String, String> properties) {
+    public void setProperties(Map<@NonNull String, @NonNull String> properties) {
 
     }
 

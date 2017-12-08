@@ -90,7 +90,7 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public @NonNull Map<@NonNull String, String> getProperties() {
+    public Map<@NonNull String, @NonNull String> getProperties() {
         return properties;
     }
 
@@ -101,7 +101,7 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public void setProperties(@NonNull Map<String, String> properties) {
+    public void setProperties(Map<@NonNull String, @NonNull String> properties) {
 
     }
 
