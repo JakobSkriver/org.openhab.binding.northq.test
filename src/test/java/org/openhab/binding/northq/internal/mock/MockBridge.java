@@ -1,5 +1,6 @@
 package org.openhab.binding.northq.internal.mock;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,18 +12,20 @@ import org.eclipse.smarthome.core.thing.Bridge;
 import org.eclipse.smarthome.core.thing.Channel;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
+import org.eclipse.smarthome.core.thing.ThingStatusDetail;
 import org.eclipse.smarthome.core.thing.ThingStatusInfo;
 import org.eclipse.smarthome.core.thing.ThingTypeUID;
 import org.eclipse.smarthome.core.thing.ThingUID;
 import org.eclipse.smarthome.core.thing.binding.BridgeHandler;
 import org.eclipse.smarthome.core.thing.binding.ThingHandler;
+import org.openhab.binding.northq.handler.NorthQNetworkHandler;
 
 public class MockBridge implements Bridge {
     Map<String, String> properties = new HashMap<String, String>();
 
     @Override
-    public @Nullable String getLabel() {
-        return null;
+    public @NonNull String getLabel() {
+        return "";
     }
 
     @Override
@@ -31,23 +34,26 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public @Nullable List<Channel> getChannels() {
-        return null;
+    public @NonNull List<Channel> getChannels() {
+        List<Channel> list = new ArrayList<Channel>();
+        return list;
     }
 
     @Override
-    public @Nullable Channel getChannel(String channelId) {
-        return null;
+    public @NonNull Channel getChannel(String channelId) {
+        Channel channel = new Channel(null, channelId);
+        return channel;
     }
 
     @Override
-    public @Nullable ThingStatus getStatus() {
-        return null;
+    public @NonNull ThingStatus getStatus() {
+        return ThingStatus.ONLINE;
     }
 
     @Override
-    public @Nullable ThingStatusInfo getStatusInfo() {
-        return null;
+    public @NonNull ThingStatusInfo getStatusInfo() {
+        ThingStatusInfo thingstatus = new ThingStatusInfo(ThingStatus.ONLINE, ThingStatusDetail.BRIDGE_OFFLINE, "");
+        return thingstatus;
     }
 
     @Override
@@ -95,9 +101,9 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public String setProperty(@NonNull String name, String value) {
+    public @NonNull String setProperty(@NonNull String name, String value) {
         properties.put(name, value);
-        return null;
+        return "";
     }
 
     @Override
@@ -106,8 +112,8 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public @Nullable String getLocation() {
-        return null;
+    public @NonNull String getLocation() {
+        return "";
     }
 
     @Override
@@ -116,13 +122,15 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public @Nullable List<Thing> getThings() {
-        return null;
+    public @NonNull List<Thing> getThings() {
+        List<Thing> thingstemp = new ArrayList<Thing>();
+        return thingstemp;
     }
 
     @Override
-    public @Nullable BridgeHandler getHandler() {
-        return null;
+    public @NonNull BridgeHandler getHandler() {
+        NorthQNetworkHandler handler = new NorthQNetworkHandler(this);
+        return handler;
     }
 
 }
