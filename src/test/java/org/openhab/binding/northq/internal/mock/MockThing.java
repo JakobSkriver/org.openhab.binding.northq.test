@@ -103,7 +103,7 @@ public class MockThing implements Thing {
     }
 
     @Override
-    public String setProperty(@NonNull String name, @NonNull String value) {
+    public String setProperty(@NonNull String name, String value) {
         properties.put(name, value);
         return "";
     }

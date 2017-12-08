@@ -101,7 +101,7 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public @NonNull String setProperty(@NonNull String name, @NonNull String value) {
+    public String setProperty(@NonNull String name, String value) {
         properties.put(name, value);
         return "";
     }
