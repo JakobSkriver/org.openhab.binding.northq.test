@@ -33,6 +33,8 @@ public class MockThing implements Thing {
     @Override
     public @NonNull List<Channel> getChannels() {
         List<Channel> list = new ArrayList<Channel>();
+        Channel channel = new Channel(null, "");
+        list.add(channel);
         return list;
     }
 
@@ -96,18 +98,18 @@ public class MockThing implements Thing {
     }
 
     @Override
-    public @NonNull Map<@NonNull String, String> getProperties() {
+    public @NonNull Map<@NonNull String, @NonNull String> getProperties() {
         return properties;
     }
 
     @Override
-    public String setProperty(@NonNull String name, String value) {
+    public String setProperty(@NonNull String name, @NonNull String value) {
         properties.put(name, value);
         return "";
     }
 
     @Override
-    public void setProperties(@NonNull Map<String, String> properties) {
+    public void setProperties(@NonNull Map<String, @NonNull String> properties) {
 
     }
 

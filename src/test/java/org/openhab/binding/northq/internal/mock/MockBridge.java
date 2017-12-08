@@ -96,18 +96,18 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public @NonNull Map<@NonNull String, String> getProperties() {
+    public @NonNull Map<@NonNull String, @NonNull String> getProperties() {
         return properties;
     }
 
     @Override
-    public @NonNull String setProperty(@NonNull String name, String value) {
+    public @NonNull String setProperty(@NonNull String name, @NonNull String value) {
         properties.put(name, value);
         return "";
     }
 
     @Override
-    public void setProperties(@NonNull Map<String, String> properties) {
+    public void setProperties(@NonNull Map<String, @NonNull String> properties) {
 
     }
 
