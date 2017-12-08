@@ -21,7 +21,7 @@ public class MockBridge implements Bridge {
     Map<String, String> properties = new HashMap<String, String>();
 
     @Override
-    public String getLabel() {
+    public @Nullable String getLabel() {
         return null;
     }
 
@@ -31,7 +31,7 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public List<Channel> getChannels() {
+    public @Nullable List<Channel> getChannels() {
         return null;
     }
 
@@ -41,12 +41,12 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public ThingStatus getStatus() {
+    public @Nullable ThingStatus getStatus() {
         return null;
     }
 
     @Override
-    public ThingStatusInfo getStatusInfo() {
+    public @Nullable ThingStatusInfo getStatusInfo() {
         return null;
     }
 
@@ -90,7 +90,7 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public @NonNull Map<@NonNull String, @NonNull String> getProperties() {
+    public @NonNull Map<@NonNull String, String> getProperties() {
         return properties;
     }
 
@@ -101,7 +101,7 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public void setProperties(@NonNull Map<@NonNull String, @NonNull String> properties) {
+    public void setProperties(@NonNull Map<String, String> properties) {
 
     }
 
@@ -116,12 +116,12 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public List<Thing> getThings() {
+    public @Nullable List<Thing> getThings() {
         return null;
     }
 
     @Override
-    public BridgeHandler getHandler() {
+    public @Nullable BridgeHandler getHandler() {
         return null;
     }
 

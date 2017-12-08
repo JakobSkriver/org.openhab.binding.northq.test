@@ -19,7 +19,7 @@ public class MockThing implements Thing {
     Map<String, String> properties = new HashMap<String, String>();
 
     @Override
-    public String getLabel() {
+    public @Nullable String getLabel() {
         return null;
     }
 
@@ -29,7 +29,7 @@ public class MockThing implements Thing {
     }
 
     @Override
-    public List<Channel> getChannels() {
+    public @Nullable List<Channel> getChannels() {
         return null;
     }
 
@@ -39,12 +39,12 @@ public class MockThing implements Thing {
     }
 
     @Override
-    public ThingStatus getStatus() {
+    public @Nullable ThingStatus getStatus() {
         return null;
     }
 
     @Override
-    public ThingStatusInfo getStatusInfo() {
+    public @Nullable ThingStatusInfo getStatusInfo() {
         return null;
     }
 
@@ -91,18 +91,18 @@ public class MockThing implements Thing {
     }
 
     @Override
-    public @NonNull Map<@NonNull String, @NonNull String> getProperties() {
+    public @NonNull Map<@NonNull String, String> getProperties() {
         return properties;
     }
 
     @Override
     public String setProperty(@NonNull String name, String value) {
         properties.put(name, value);
-        return null;
+        return "";
     }
 
     @Override
-    public void setProperties(@NonNull Map<@NonNull String, @NonNull String> properties) {
+    public void setProperties(@NonNull Map<String, String> properties) {
 
     }
 
