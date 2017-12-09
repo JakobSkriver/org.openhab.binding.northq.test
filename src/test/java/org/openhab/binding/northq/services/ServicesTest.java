@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2010-2017 by the respective copyright holders.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package org.openhab.binding.northq.services;
 
 import static org.junit.Assert.*;
@@ -22,6 +30,13 @@ import org.openhab.binding.northq.internal.model.json.UserNotificationHolder;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
 
+/**
+ * The {@link ServicesTest} is responsible for handling commands, which are
+ * sent to one of the channels.
+ *
+ * @author Jakob / Philip - Initial contribution.
+ */
+
 public class ServicesTest {
     NorthqServices services;
     CredentialsService credentialsServices;
@@ -29,8 +44,6 @@ public class ServicesTest {
     NorthNetwork network;
     NorthQPhoneHandler phoneHandler;
 
-    // --------------------------------------------------
-    // Setup - Start
     @Before
     public void setUp() throws Exception {
         services = new NorthqServices();
@@ -39,16 +52,24 @@ public class ServicesTest {
         network = services.mapNorthQNetwork(user.get(0), user.get(1));
     }
 
+    /**
+     * Description: Testing the Network map is correctly generated
+     * Input: A mapped network
+     * Expected result: Network.userid = 2166 and network.houses.length is less then or equal to 1
+     */
+
     @Test
     public void mapGenerationTest() throws Exception {
         assertEquals(network.getUserId(), "2166");
         assertTrue(network.getHouses().length >= 1);
     }
-    // Setup - End
-    // --------------------------------------------------
 
-    // --------------------------------------------------
-    // Use Case 1 - Start
+    /**
+     * Description: Turning the qPlug On from the service.
+     * Input:
+     * Expected result: Plug is On
+     */
+
     @Test
     public void plugOnTest() {
         Qplug plug = null;
@@ -88,6 +109,12 @@ public class ServicesTest {
 
         }
     }
+
+    /**
+     * Description: Turning the qPlug off from the service.
+     * Input:
+     * Expected result: Plug is Off
+     */
 
     @Test
     public void plugOffTest() throws IOException, Exception {
@@ -131,11 +158,13 @@ public class ServicesTest {
         // Plug is turned on for convenience
         services.turnOnPlug(plug, network.getToken(), network.getUserId(), network.getGateways().get(0).getGatewayId());
     }
-    // Use Case 1 - End
-    // --------------------------------------------------
 
-    // --------------------------------------------------
-    // Use Case 2 - Start
+    /**
+     * Description: Arming the motion sensor from the service
+     * Input:
+     * Expected result: Motion sensor is armed
+     */
+
     @Test
     public void motionArmTest() throws IOException, Exception {
         // get devices find correct device and turn on:
@@ -172,6 +201,12 @@ public class ServicesTest {
 
         assertEquals(mot.getStatus(), true);
     }
+
+    /**
+     * Description: Disarming the motion sensor from the service
+     * Input:
+     * Expected result: Motion sensor is disarmed
+     */
 
     @Test
     public void motionDisarmTest() throws IOException, Exception {
@@ -210,17 +245,25 @@ public class ServicesTest {
         assertEquals(mot.getStatus(), false);
     }
 
+    /**
+     * Description: Testing getting notifications from the NorthQ api
+     * Input:
+     * Expected result: Notifications is not empty
+     */
+
     @Test
     public void notificationTest() throws IOException, Exception {
         UserNotificationHolder res = services.getNotificationArray(network.getUserId(), network.getToken(),
                 network.getHouses()[0].id + "", "1");
         assertTrue(res.UserNotifications.size() >= 1);
     }
-    // Use Case 2 - End
-    // --------------------------------------------------
 
-    // --------------------------------------------------
-    // Use Case 3 - Start
+    /**
+     * Description: Setting the thermostat temperature from the service
+     * Input:
+     * Expected result: The Api call was succesful
+     */
+
     @Test
     public void thermostatTest() throws IOException, Exception {
         NGateway gateway = network.getGateways().get(0);
@@ -243,8 +286,12 @@ public class ServicesTest {
         assertTrue(res);
 
     }
-    // Use Case 3- End
-    // --------------------------------------------------
+
+    /**
+     * Description: Testing if the motion sensor is triggered or not triggered from the service
+     * Input:
+     * Expected result: Motion sensor is triggered and then not triggered
+     */
 
     @Test
     public void isTriggeredTest() {

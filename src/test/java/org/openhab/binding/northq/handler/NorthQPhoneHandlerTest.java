@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2010-2017 by the respective copyright holders.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package org.openhab.binding.northq.handler;
 
 import java.util.ArrayList;
@@ -16,6 +24,13 @@ import org.openhab.binding.northq.internal.mock.MockThing;
 import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
+
+/**
+ * The {@link NorthQPhoneHandlerTest} is responsible for handling commands, which are
+ * sent to one of the channels.
+ *
+ * @author Jakob / Philip - Initial contribution.
+ */
 
 public class NorthQPhoneHandlerTest {
     NorthqServices services;
@@ -53,6 +68,13 @@ public class NorthQPhoneHandlerTest {
         handler.setCallback(callback);
 
     }
+
+    /**
+     * Description: Turning the Phone location service On and Off for the phone from the Handler.
+     * Input: On/Off Command
+     * Expected result: The Phone is set to enabled, the scheduled code will then change the phone to isHome or not. The
+     * phone is set to disabled and removed from the phone map.
+     */
 
     @Test
     public void qPhoneChangeStatusTest() throws InterruptedException {

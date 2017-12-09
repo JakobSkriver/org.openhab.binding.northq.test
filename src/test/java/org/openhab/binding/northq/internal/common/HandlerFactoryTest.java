@@ -1,4 +1,14 @@
+/**
+ * Copyright (c) 2010-2017 by the respective copyright holders.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package org.openhab.binding.northq.internal.common;
+
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 
@@ -24,6 +34,13 @@ import org.openhab.binding.northq.internal.mock.MockThing;
 import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
+
+/**
+ * The {@link HandlerFactoryTest} is responsible for handling commands, which are
+ * sent to one of the channels.
+ *
+ * @author Jakob / Philip - Initial contribution.
+ */
 
 public class HandlerFactoryTest {
     NorthqServices services;
@@ -62,6 +79,12 @@ public class HandlerFactoryTest {
 
     }
 
+    /**
+     * Description: Test creation of NorthQNetWorkHandler
+     * Input: ThingType of nortqnetwork
+     * Expected result: Successful creation of a NorthQNetworkHandler
+     */
+
     @Test
     public void networkThingTypeTest() {
         bridge.setProperty("ThingUID", "northqnetwork");
@@ -70,6 +93,12 @@ public class HandlerFactoryTest {
         handler.setCallback(callback);
         handler.handleRemoval();
     }
+
+    /**
+     * Description: Test creation of NorthQPlugHandler
+     * Input: ThingType of qPlug
+     * Expected result: Successful creation of a NorthQPlugHandler
+     */
 
     @Test
     public void plugThingTypeTest() {
@@ -80,6 +109,12 @@ public class HandlerFactoryTest {
         handler.handleRemoval();
     }
 
+    /**
+     * Description: Test creation of NorthQMotionHandler
+     * Input: ThingType of qMotion
+     * Expected result: Successful creation of a NorthQMotionHandler
+     */
+
     @Test
     public void motionThingTypeTest() {
         thing.setProperty("ThingUID", "qMotion");
@@ -89,6 +124,12 @@ public class HandlerFactoryTest {
         handler.handleRemoval();
     }
 
+    /**
+     * Description: Test creation of NorthQThermostatHandler
+     * Input: ThingType of qThermostat
+     * Expected result: Successful creation of a NorthQThermostatHandler
+     */
+
     @Test
     public void thermostatThingTypeTest() throws InterruptedException {
         thing.setProperty("ThingUID", "qThermostat");
@@ -96,8 +137,13 @@ public class HandlerFactoryTest {
         NorthQThermostatHandler handler = (NorthQThermostatHandler) handlerFactory.createHandler(thing);
         handler.setCallback(callback);
         handler.handleRemoval();
-
     }
+
+    /**
+     * Description: Test creation of NorthQPhoneHandler
+     * Input: ThingType of qPhone
+     * Expected result: Successful creation of a NorthQPhoneHandler
+     */
 
     @Test
     public void phoneThingTypeTest() {
@@ -109,6 +155,12 @@ public class HandlerFactoryTest {
         handler.handleRemoval();
     }
 
+    /**
+     * Description: Test creation of NorthQGatewayHandler
+     * Input: ThingType of gateway
+     * Expected result: Successful creation of a NorthQGatewayHandler
+     */
+
     @Test
     public void settingsThingTypeTest() {
         thing.setProperty("ThingUID", "gateway");
@@ -117,6 +169,12 @@ public class HandlerFactoryTest {
         handler.setCallback(callback);
         handler.handleRemoval();
     }
+
+    /**
+     * Description: Test creation of MockNetworkHandler
+     * Input: ThingType of mocknetwork
+     * Expected result: Successful creation of a MockNetworkHandler
+     */
 
     @Test
     public void mockThingTypeTest() {
@@ -127,10 +185,17 @@ public class HandlerFactoryTest {
         handler.handleRemoval();
     }
 
+    /**
+     * Description: Test handling of a thingtype of NULL
+     * Input: ThingType of NULL
+     * Expected result: creation return null
+     */
+
     @Test
     public void nullThingTest() {
         thing.setProperty("ThingUID", "NULL");
         // Creating a none supported type handler
-        handlerFactory.createHandler(thing);
+        assertNull(handlerFactory.createHandler(thing));
+
     }
 }

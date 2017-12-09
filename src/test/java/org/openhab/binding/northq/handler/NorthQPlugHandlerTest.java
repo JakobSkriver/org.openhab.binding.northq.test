@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2010-2017 by the respective copyright holders.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package org.openhab.binding.northq.handler;
 
 import static org.junit.Assert.*;
@@ -18,6 +26,13 @@ import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
 
+/**
+ * The {@link NorthQPlugHandlerTest} is responsible for handling commands, which are
+ * sent to one of the channels.
+ *
+ * @author Jakob / Philip - Initial contribution.
+ */
+
 public class NorthQPlugHandlerTest {
     NorthqServices services;
     CredentialsService credentialsServices;
@@ -32,7 +47,7 @@ public class NorthQPlugHandlerTest {
     @Mock
     private ThingHandlerCallback callback = new MockCallback();
     @Mock
-    private MockCommand mockCommand = new MockCommand();
+    private MockCommand mockCommand = new MockCommand(); // Default command = ON
     @Mock
     private ChannelUID mockChannel;
 
@@ -54,6 +69,12 @@ public class NorthQPlugHandlerTest {
         handler.setCallback(callback);
 
     }
+
+    /**
+     * Description: Turning the qPlug On and Off from the Handler. Tests if qPlug is turned On and Off respectively
+     * Input: On/Off Command
+     * Expected result: qPlug.status = ON then qPlug.status = OFF
+     */
 
     @Test
     public void qPlugHandlerOnOffTest() {

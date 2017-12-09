@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2010-2017 by the respective copyright holders.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package org.openhab.binding.northq.handler;
 
 import java.util.ArrayList;
@@ -18,6 +26,13 @@ import org.openhab.binding.northq.internal.mock.MockThing;
 import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
+
+/**
+ * The {@link NorthQNetworkHandlerTest} is responsible for handling commands, which are
+ * sent to one of the channels.
+ *
+ * @author Jakob / Philip - Initial contribution.
+ */
 
 public class NorthQNetworkHandlerTest {
 
@@ -55,6 +70,12 @@ public class NorthQNetworkHandlerTest {
         handler.setCallback(callback);
     }
 
+    /**
+     * Description: Initializing the live network
+     * Input: Setting the NorthQConfig Mock boolean variable to false and initializing
+     * Expected result: The live network is initialized
+     */
+
     @Test
     public void liveNetworkHandlerTest() {
         // Setting the network used to the live devices
@@ -66,6 +87,13 @@ public class NorthQNetworkHandlerTest {
 
         handler.handleRemoval();
     }
+
+    /**
+     * Description: Initializing the mock network
+     * Input: Setting the NorthQConfig Mock boolean variable to true and setting the Mock network to null, then
+     * initializing
+     * Expected result: The mock network is initialized and the mock gui is visible (not possible on server)
+     */
 
     @Test
     public void mockNetworkHandlerTest() throws InterruptedException {

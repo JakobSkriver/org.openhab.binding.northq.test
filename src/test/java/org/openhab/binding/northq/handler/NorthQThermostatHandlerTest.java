@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2010-2017 by the respective copyright holders.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package org.openhab.binding.northq.handler;
 
 import static org.junit.Assert.assertTrue;
@@ -19,6 +27,13 @@ import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
 
+/**
+ * The {@link NorthQThermostatHandlerTest} is responsible for handling commands, which are
+ * sent to one of the channels.
+ *
+ * @author Jakob / Philip - Initial contribution.
+ */
+
 public class NorthQThermostatHandlerTest {
     NorthqServices services;
     CredentialsService credentialsServices;
@@ -37,7 +52,6 @@ public class NorthQThermostatHandlerTest {
     @Mock
     private ChannelUID mockChannel;
 
-    // 90.1% Coverage appear to be the best we can do, without properly emulating the northq network
     @Before
     public void setUp() throws Exception {
 
@@ -57,6 +71,12 @@ public class NorthQThermostatHandlerTest {
 
     }
 
+    /**
+     * Description: Setting the temperature of the thermostat to 21 and then to 29
+     * Input: Number command
+     * Expected result: The thermostat is set to first 21 and then to 29
+     */
+
     @Test
     public void setTemperatureHandlerTest() throws InterruptedException {
         handler.initialize();
@@ -66,9 +86,8 @@ public class NorthQThermostatHandlerTest {
         // Sending a command to handlecommand with a temp value of 21
         mockCommand.command = "21";
         handler.handleCommand(t, mockCommand);
-        handler.getThermostat("4");
-        handler.getThermostat("4").getTemp();
         assertTrue(handler.getThermostat("4").getTemp() == 21);
+
         // Sending a command to handlecommand with a temp value of 19
         mockCommand.command = "19";
         handler.handleCommand(t, mockCommand);
@@ -76,6 +95,12 @@ public class NorthQThermostatHandlerTest {
 
         handler.handleRemoval();
     }
+
+    /**
+     * Description: When no one is home, the temperature is set to the temperature in the variable NotHomeTemp
+     * Input: Set config to no one home, and set no one home temp to 32
+     * Expected result: Checking the not home temperature is set to 32
+     */
 
     @Test
     public void above30NotHomeTest() throws InterruptedException {
@@ -90,10 +115,14 @@ public class NorthQThermostatHandlerTest {
         // Checking that NotHomeTemp is set to 32
         assertTrue(NorthQConfig.getNOTHOMETEMP() == 32);
 
-        ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
-
         handler.handleRemoval();
     }
+
+    /**
+     * Description: When some one is home, the temperature is set to the temperature in the variable IsHomeTemp
+     * Input: Set config to is home, and set is home temp to 3
+     * Expected result: Checking the is home temperature is set to 3
+     */
 
     @Test
     public void below5IsHomeTest() throws InterruptedException {
@@ -107,8 +136,6 @@ public class NorthQThermostatHandlerTest {
 
         // Checking that the temperature when someone is home to 3
         assertTrue(NorthQConfig.getISHOMETEMP() == 3);
-
-        ChannelUID t = new ChannelUID("northq:qThermostat:4:channelthermostat");
 
         handler.handleRemoval();
     }

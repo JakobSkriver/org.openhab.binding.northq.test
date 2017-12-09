@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2010-2017 by the respective copyright holders.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package org.openhab.binding.northq.handler;
 
 import static org.junit.Assert.*;
@@ -18,7 +26,14 @@ import org.openhab.binding.northq.internal.model.NorthNetwork;
 import org.openhab.binding.northq.internal.services.CredentialsService;
 import org.openhab.binding.northq.internal.services.NorthqServices;
 
-public class SettingsHandlerTest {
+/**
+ * The {@link NorthQGatewayHandlerTest} is responsible for handling commands, which are
+ * sent to one of the channels.
+ *
+ * @author Jakob / Philip - Initial contribution.
+ */
+
+public class NorthQGatewayHandlerTest {
 
     @Mock
     private Thing thing = new MockThing();
@@ -50,6 +65,12 @@ public class SettingsHandlerTest {
         handler.setCallback(callback);
     }
 
+    /**
+     * Description: Turning Heat on location On and Off respectively
+     * Input: On/Off command
+     * Expected result: IsHeatOnLocation is set to true and then to false.
+     */
+
     @Test
     public void updateToggleHeatTest() {
         handler.initialize();
@@ -75,6 +96,12 @@ public class SettingsHandlerTest {
         handler.handleRemoval();
     }
 
+    /**
+     * Description: Setting the temperature when some one is home to 27 from the handler
+     * Input: Number command
+     * Expected result: The IsHomeTemp in NorthQConfig is set to 27
+     */
+
     @Test
     public void setIsHomeTempTest() {
         handler.initialize();
@@ -89,6 +116,12 @@ public class SettingsHandlerTest {
 
         handler.handleRemoval();
     }
+
+    /**
+     * Description: Setting the temperature when no one is home to 12 from the handler
+     * Input: Number command
+     * Expected result: The NotHomeTemp in NorthQConfig is set to 12
+     */
 
     @Test
     public void setNotHomeTempTest() {
