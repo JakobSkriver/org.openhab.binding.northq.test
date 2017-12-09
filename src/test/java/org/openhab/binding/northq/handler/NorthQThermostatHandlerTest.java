@@ -48,7 +48,7 @@ public class NorthQThermostatHandlerTest {
 
         NorthQConfig.setNETWORK(network);
 
-        thing.setProperty("thingID", "4"); // 4 for thermostat (node_id) TODO Get node_id in a different way!!
+        thing.setProperty("thingID", "4"); // 4 for thermostat (node_id)
         thing.setProperty("BINDING_ID", "northq"); // Always northq for the Binding_id
         thing.setProperty("ThingUID", "qThermostat"); // Depends on the test (check NorthQBindingConstants)
 
