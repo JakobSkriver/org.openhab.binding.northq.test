@@ -34,7 +34,7 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public @NonNull List<@NonNull Channel> getChannels() {
+    public List<Channel> getChannels() {
         List<Channel> list = new ArrayList<Channel>();
         return list;
     }
@@ -96,7 +96,7 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public @NonNull Map<@NonNull String, @NonNull String> getProperties() {
+    public Map<String, String> getProperties() {
         return properties;
     }
 
@@ -107,7 +107,7 @@ public class MockBridge implements Bridge {
     }
 
     @Override
-    public void setProperties(@NonNull Map<@NonNull String, @NonNull String> properties) {
+    public void setProperties(Map<String, String> properties) {
 
     }
 
