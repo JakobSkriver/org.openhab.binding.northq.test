@@ -127,7 +127,7 @@ public class NorthQThermostatHandlerTest {
     @Test
     public void below5IsHomeTest() throws InterruptedException {
         handler.initialize();
-        // Configurating that noone is home
+        // Configurating that someone is home
         NorthQConfig.setISHOME(true);
 
         // Setting the temperature for when someone is home to 3
@@ -136,6 +136,60 @@ public class NorthQThermostatHandlerTest {
 
         // Checking that the temperature when someone is home to 3
         assertTrue(NorthQConfig.getISHOMETEMP() == 3);
+
+        handler.handleRemoval();
+    }
+
+    /**
+     * Description: When Heat on location is enabled and someone is home, the temperature is set to the temperature in
+     * the variable IsHomeTemp
+     * Input:
+     * Expected result:
+     */
+
+    @Test
+    public void setTempIsHomeTest() throws InterruptedException {
+        handler.initialize();
+        NorthQConfig.setHEATONLOCATION(true);
+        // Configurating that someone is home
+        NorthQConfig.setISHOME(true);
+
+        TimeUnit.SECONDS.sleep(10);
+
+        handler.handleRemoval();
+    }
+
+    /**
+     * Description: WHen Heat On locaion is enabled and no one is home, the temperature is set to the temperature in the
+     * variable IsHomeTemp
+     * Input:
+     * Expected result:
+     */
+
+    @Test
+    public void setTempNoOneHomeTest() throws InterruptedException {
+        handler.initialize();
+        NorthQConfig.setHEATONLOCATION(true);
+        // Configurating that noone is home
+        NorthQConfig.setISHOME(false);
+
+        TimeUnit.SECONDS.sleep(10);
+
+        handler.handleRemoval();
+    }
+
+    /**
+     * Description: Test concurrency recovery
+     * Input:
+     * Expected result:
+     */
+
+    @Test
+    public void concurrencyTemp() throws InterruptedException {
+        handler.initialize();
+        TimeUnit.SECONDS.sleep(10);
+        handler.getThermostat("4").getTher().temperature = 10;
+        TimeUnit.SECONDS.sleep(10);
 
         handler.handleRemoval();
     }

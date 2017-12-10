@@ -96,4 +96,84 @@ public class NorthQMotionHandlerTest {
 
     }
 
+    /**
+     * Description: Enable power on light percentage
+     * Input: On/OFF Command
+     * Expected result: Power on Light percentage is enabled
+     */
+
+    @Test
+    public void enablePowerOnLightTest() throws InterruptedException {
+        handler.initialize();
+        ChannelUID t = new ChannelUID("northq:qMotion:5:channellightonpercentswitch");
+
+        // enabling power on light percentage via handlecommand
+        handler.handleCommand(t, mockCommand);
+
+        TimeUnit.SECONDS.sleep(7);
+
+        handler.handleRemoval();
+
+    }
+
+    /**
+     * Description: Disable power on light percentage
+     * Input: On/OFF Command
+     * Expected result: Power on Light percentage is disabled
+     */
+
+    @Test
+    public void disablePowerOnLightTest() throws InterruptedException {
+        handler.initialize();
+        ChannelUID t = new ChannelUID("northq:qMotion:5:channellightonpercentswitch");
+        mockCommand.command = "OFF";
+        // disabling power on light percentage via handlecommand
+        handler.handleCommand(t, mockCommand);
+
+        TimeUnit.SECONDS.sleep(7);
+
+        handler.handleRemoval();
+
+    }
+
+    /**
+     * Description: Enable power on Motion
+     * Input: On/OFF Command
+     * Expected result: Power on Motion is enabled
+     */
+
+    @Test
+    public void enablePowerOnMotionTest() throws InterruptedException {
+        handler.initialize();
+        ChannelUID t = new ChannelUID("northq:qMotion:5:channelpoweronmotionswitch");
+
+        // enabling power on Motion percentage via handlecommand
+        handler.handleCommand(t, mockCommand);
+
+        TimeUnit.SECONDS.sleep(7);
+
+        handler.handleRemoval();
+
+    }
+
+    /**
+     * Description: Disable power on light percentage
+     * Input: On/OFF Command
+     * Expected result: Power on Motion is disabled
+     */
+
+    @Test
+    public void disablePowerOnMotionTest() throws InterruptedException {
+        handler.initialize();
+        ChannelUID t = new ChannelUID("northq:qMotion:5:channelpoweronmotionswitch");
+        mockCommand.command = "OFF";
+        // disabling power on Motion via handlecommand
+        handler.handleCommand(t, mockCommand);
+
+        TimeUnit.SECONDS.sleep(7);
+
+        handler.handleRemoval();
+
+    }
+
 }

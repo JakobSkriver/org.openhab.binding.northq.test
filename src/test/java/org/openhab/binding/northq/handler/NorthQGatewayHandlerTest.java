@@ -11,6 +11,8 @@ package org.openhab.binding.northq.handler;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
@@ -58,6 +60,7 @@ public class NorthQGatewayHandlerTest {
         network = services.mapNorthQNetwork(user.get(0), user.get(1));
 
         NorthQConfig.setNETWORK(network);
+        thing.setProperty("thingID", "0000003652");
         thing.setProperty("BINDING_ID", "northq");
         thing.setProperty("ThingUID", "settings");
 
@@ -137,4 +140,154 @@ public class NorthQGatewayHandlerTest {
         handler.handleRemoval();
     }
 
+    /**
+     * Description: Enabling Power on motion
+     * Input: On/Off command
+     * Expected result: Power on motion is enabled
+     */
+
+    @Test
+    public void enablePowerOnMotionTest() {
+        handler.initialize();
+        ChannelUID chnltest = new ChannelUID("northq:settings:0:channelgpspoweroff");
+        mockCommand.command = "ON";
+
+        // Enabling Power on motion handlecommand
+        handler.handleCommand(chnltest, mockCommand);
+
+        // Checking power on motion is set to true in northQconfig
+        assertTrue(NorthQConfig.isPOWERONLOCATION());
+        handler.handleRemoval();
+    }
+
+    /**
+     * Description: Disabling Power on motion
+     * Input: On/Off command
+     * Expected result: Power on motion is disable
+     */
+
+    @Test
+    public void disablePowerOnMotionTest() {
+        handler.initialize();
+        ChannelUID chnltest = new ChannelUID("northq:settings:0:channelgpspoweroff");
+        mockCommand.command = "OFF";
+
+        // Disabling Power on motion handlecommand
+        handler.handleCommand(chnltest, mockCommand);
+
+        // Checking power on motion is set to false in northQconfig
+        assertFalse(NorthQConfig.isPOWERONLOCATION());
+        handler.handleRemoval();
+    }
+
+    /**
+     * Description: Enabling Temperature Scheduler
+     * Input: On/Off command
+     * Expected result: Temperature Scheduler is enabled
+     */
+
+    @Test
+    public void enableTempSchedulerTest() {
+        handler.initialize();
+        ChannelUID chnltest = new ChannelUID("northq:settings:0:channelScheduleTemp");
+        mockCommand.command = "ON";
+
+        // Enabling temperature scheduler
+        handler.handleCommand(chnltest, mockCommand);
+
+        // Checking temperature scheduler is set to true in northQconfig
+        assertTrue(NorthQConfig.isTEMP_SCHEDULER());
+        handler.handleRemoval();
+    }
+
+    /**
+     * Description: Disabling Temperature Scheduler
+     * Input: On/Off command
+     * Expected result: Temperature Scheduler is disable
+     */
+
+    @Test
+    public void disableTempSchedulerTest() {
+        handler.initialize();
+        ChannelUID chnltest = new ChannelUID("northq:settings:0:channelScheduleTemp");
+        mockCommand.command = "OFF";
+
+        // Disabling temperature scheduler
+        handler.handleCommand(chnltest, mockCommand);
+
+        // Checking temperature scheduler is set to false in northQconfig
+        assertFalse(NorthQConfig.isTEMP_SCHEDULER());
+        handler.handleRemoval();
+    }
+
+    /**
+     * Description: Setting day temperature for the scheduler
+     * Input: Number command
+     * Expected result: Day temperature for the scheduler is set
+     */
+
+    @Test
+    public void setDayTempSchedulerTest() {
+        handler.initialize();
+        ChannelUID chnltest = new ChannelUID("northq:settings:0:channelScheduleTempDay");
+        mockCommand.command = "23";
+
+        // Setting the day temperature
+        handler.handleCommand(chnltest, mockCommand);
+
+        // Checking power on motion is set to true in northQconfig
+        assertTrue(NorthQConfig.getDAYTEMP() == 23);
+        handler.handleRemoval();
+    }
+
+    /**
+     * Description: Setting night temperature for the scheduler
+     * Input: Number command
+     * Expected result: Night temperature for the scheduler is set
+     */
+
+    @Test
+    public void setNightempTempSchedulerTest() {
+        handler.initialize();
+        ChannelUID chnltest = new ChannelUID("northq:settings:0:channelScheduleTempNight");
+        mockCommand.command = "15";
+
+        // Disabling Power on motion handlecommand
+        handler.handleCommand(chnltest, mockCommand);
+
+        // Checking power on motion is set to false in northQconfig
+        assertTrue(NorthQConfig.getNIGHTTEMP() == 15);
+        handler.handleRemoval();
+    }
+
+    /**
+     * Description: Testing schedule code
+     * Input:
+     * Expected result:
+     *
+     * @throws InterruptedException
+     */
+
+    @Test
+    public void scheduleCodeTest() throws InterruptedException {
+        handler.initialize();
+
+        TimeUnit.SECONDS.sleep(11);
+
+        NorthQConfig.setHEATONLOCATION(true);
+        NorthQConfig.setPOWERONLOCATION(true);
+
+        TimeUnit.SECONDS.sleep(11);
+
+        HashMap<String, Boolean> phone_map = new HashMap<String, Boolean>();
+        phone_map.put("TestPhone", false);
+
+        NorthQConfig.setPHONE_MAP(phone_map);
+
+        TimeUnit.SECONDS.sleep(11);
+
+        phone_map.put("TestPhone2", true);
+
+        handler.handleRemoval();
+    }
 }

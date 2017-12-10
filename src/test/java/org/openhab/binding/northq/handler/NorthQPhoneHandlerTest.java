@@ -94,4 +94,25 @@ public class NorthQPhoneHandlerTest {
         handler.handleRemoval();
     }
 
+    /**
+     * Description: Testing schedule code
+     * Input:
+     * Expected result:
+     */
+
+    @Test
+    public void scheduleCodeTest() throws InterruptedException {
+        handler.initialize();
+        NorthQConfig.setMOCK(true);
+        handler.location = "1";
+        handler.locationStatus = "Home";
+
+        ChannelUID t = new ChannelUID("northq:qPhone:0:channelgps");
+        handler.handleCommand(t, mockCommand);
+
+        TimeUnit.SECONDS.sleep(7);
+
+        handler.handleRemoval();
+    }
+
 }
