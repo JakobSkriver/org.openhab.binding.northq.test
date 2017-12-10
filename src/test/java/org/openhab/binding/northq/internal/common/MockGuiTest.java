@@ -29,7 +29,6 @@ public class MockGuiTest {
     public void setup() throws Exception {
         NorthQConfig.setMOCK_NETWORK(new NorthQMockNetwork());
         gui = new MockGui();
-        gui.setVisible(true);
     }
 
     /**
