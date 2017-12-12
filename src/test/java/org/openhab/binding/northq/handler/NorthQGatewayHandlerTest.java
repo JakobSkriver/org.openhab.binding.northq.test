@@ -221,46 +221,6 @@ public class NorthQGatewayHandlerTest {
     }
 
     /**
-     * Description: Setting day temperature for the scheduler
-     * Input: Number command
-     * Expected result: Day temperature for the scheduler is set
-     */
-
-    @Test
-    public void setDayTempSchedulerTest() {
-        handler.initialize();
-        ChannelUID chnltest = new ChannelUID("northq:settings:0:channelScheduleTempDay");
-        mockCommand.command = "23";
-
-        // Setting the day temperature
-        handler.handleCommand(chnltest, mockCommand);
-
-        // Checking power on motion is set to true in northQconfig
-        assertTrue(NorthQConfig.getDAYTEMP() == 23);
-        handler.handleRemoval();
-    }
-
-    /**
-     * Description: Setting night temperature for the scheduler
-     * Input: Number command
-     * Expected result: Night temperature for the scheduler is set
-     */
-
-    @Test
-    public void setNightempTempSchedulerTest() {
-        handler.initialize();
-        ChannelUID chnltest = new ChannelUID("northq:settings:0:channelScheduleTempNight");
-        mockCommand.command = "15";
-
-        // Disabling Power on motion handlecommand
-        handler.handleCommand(chnltest, mockCommand);
-
-        // Checking power on motion is set to false in northQconfig
-        assertTrue(NorthQConfig.getNIGHTTEMP() == 15);
-        handler.handleRemoval();
-    }
-
-    /**
      * Description: Testing schedule code
      * Input:
      * Expected result:
