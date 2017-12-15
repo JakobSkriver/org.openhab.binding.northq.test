@@ -34,7 +34,8 @@ import org.openhab.binding.northq.internal.services.NorthqServices;
  * The {@link ServicesTest} is responsible for handling commands, which are
  * sent to one of the channels.
  *
- * @author Jakob / Philip - Initial contribution.
+ * @author Dan / Mikkel- Initial contribution.
+ * @author Jakob / Philip - update class.
  */
 
 public class ServicesTest {

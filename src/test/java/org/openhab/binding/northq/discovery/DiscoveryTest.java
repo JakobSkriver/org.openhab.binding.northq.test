@@ -19,7 +19,7 @@ import org.openhab.binding.northq.internal.model.NorthNetwork;
  * The {@link DiscoveryTest} is responsible for handling commands, which are
  * sent to one of the channels.
  *
- * @author Dan - Initial contribution.
+ * @author Dan / Mads - Initial contribution.
  */
 
 public class DiscoveryTest {

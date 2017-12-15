@@ -21,7 +21,8 @@ import org.openhab.binding.northq.internal.model.NorthNetwork;
  * The {@link ConfigTest} is responsible for handling commands, which are
  * sent to one of the channels.
  *
- * @author Jakob / Philip - Initial contribution.
+ * @author Dan / Mads - Initial contribution.
+ * @author Jakob / Philip - Updated class.
  */
 
 public class ConfigTest {
